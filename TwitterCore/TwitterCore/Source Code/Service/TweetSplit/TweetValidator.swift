@@ -16,4 +16,14 @@ class TweetValidator {
         }
         return nil
     }
+
+    func validate(_ word: [String], max: Int) -> SplitError? {
+        let wordsExcessed = word.filter { $0.count > max }
+
+        if wordsExcessed.count > 0 {
+            return .invalid
+        }
+
+        return nil
+    }
 }

@@ -8,9 +8,19 @@
 
 import Foundation
 
+struct TweetPage {
+
+    let index: Int
+    var max: Int
+
+    func toString() -> String {
+        return "\(index)/\(max)"
+    }
+}
+
 final class TweetIndicator {
 
-    func toString(_ index: Int, count: Int) -> String {
-        return "\(index):\(count)"
+    func toString(_ page: TweetPage) -> String {
+        return "\(page.index)/\(page.max)"
     }
 }

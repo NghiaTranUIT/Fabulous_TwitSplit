@@ -28,16 +28,29 @@ class TweetSplitProcessor {
 
     func process(_ message: String) -> SplitResult {
 
-        // Validate
-        if let error = validator.validate(message) {
-            return SplitResult.error(error)
+        // Trim
+        let message = message.trim()
+        if message.isEmpty {
+            return SplitResult.error(.invalid)
         }
 
         // Extract to each word
         let words = extractor.extract(message)
 
+        // Validate
+        if let error = validator.validate(words, max: configuration.maxCharacter) {
+            return SplitResult.error(error)
+        }
+
         // Build Tweet
         let builder = TweetBuilder(indicator: indicator, words: words, configuration: configuration)
         return builder.process()
+    }
+}
+
+extension String {
+
+    func trim() -> String {
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }

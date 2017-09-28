@@ -23,6 +23,7 @@
 		BA9369B71F7D2D22005F0D31 /* TweetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369B61F7D2D22005F0D31 /* TweetBuilder.swift */; };
 		BA9369B91F7D2E95005F0D31 /* TweetObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369B81F7D2E95005F0D31 /* TweetObj.swift */; };
 		BA9369BB1F7D34C1005F0D31 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369BA1F7D34C1005F0D31 /* AppViewModel.swift */; };
+		BA9369BD1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369BC1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift */; };
 		BA9FBF721F7CAE1600A20B5C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9FBF681F7CAE1600A20B5C /* TwitterCore.framework */; };
 		BA9FBF771F7CAE1600A20B5C /* TwitterCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9FBF761F7CAE1600A20B5C /* TwitterCoreTests.swift */; };
 		BA9FBF791F7CAE1600A20B5C /* TwitterCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BA9FBF6B1F7CAE1600A20B5C /* TwitterCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,6 +56,7 @@
 		BA9369B61F7D2D22005F0D31 /* TweetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetBuilder.swift; sourceTree = "<group>"; };
 		BA9369B81F7D2E95005F0D31 /* TweetObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetObj.swift; sourceTree = "<group>"; };
 		BA9369BA1F7D34C1005F0D31 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		BA9369BC1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSplitProcessorTests.swift; sourceTree = "<group>"; };
 		BA9FBF681F7CAE1600A20B5C /* TwitterCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwitterCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9FBF6B1F7CAE1600A20B5C /* TwitterCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterCore.h; sourceTree = "<group>"; };
 		BA9FBF6C1F7CAE1600A20B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				BA9FBF761F7CAE1600A20B5C /* TwitterCoreTests.swift */,
 				BA9FBF781F7CAE1600A20B5C /* Info.plist */,
+				BA9369BC1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift */,
 			);
 			path = TwitterCoreTests;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA9FBF771F7CAE1600A20B5C /* TwitterCoreTests.swift in Sources */,
+				BA9369BD1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

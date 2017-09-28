@@ -10,6 +10,6 @@ import Foundation
 
 struct SplitConfiguration {
 
-    static let maxCharacter = 50
-    static let characterExtractor = CharacterSet.whitespacesAndNewlines
+    public let maxCharacter = 50
+    public let characterExtractor = CharacterSet.whitespacesAndNewlines
 }
