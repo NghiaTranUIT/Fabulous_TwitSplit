@@ -137,7 +137,6 @@
 		BA93699C1F7D282A005F0D31 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				BA9FBF4A1F7CADF000A20B5C /* Info.plist */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -180,6 +179,7 @@
 		BA9FBF3D1F7CADF000A20B5C /* TwitterApp */ = {
 			isa = PBXGroup;
 			children = (
+				BA9FBF4A1F7CADF000A20B5C /* Info.plist */,
 				BA9369991F7D281B005F0D31 /* Constants */,
 				BA9369961F7D27F7005F0D31 /* Resources */,
 				BA9369951F7D27EE005F0D31 /* Source */,
