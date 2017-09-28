@@ -8,31 +8,41 @@
 
 import Foundation
 
-protocol TwitterViewModelProtocol {
+public protocol TwitterViewModelProtocol {
 
     var input: TwitterViewModelInput { get }
     var output: TwitterViewModelOutput { get }
 }
-protocol TwitterViewModelInput {
+
+public protocol TwitterViewModelInput {
+
+    func sendMessage(text: String)
+}
+
+public protocol TwitterViewModelOutput {
 
 }
 
-protocol TwitterViewModelOutput {
-
-}
-
-class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, TwitterViewModelOutput {
+public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, TwitterViewModelOutput {
 
     // MARK: - View Model
-    var input: TwitterViewModelInput { return self }
-    var output: TwitterViewModelOutput { return self }
+    public var input: TwitterViewModelInput { return self }
+    public var output: TwitterViewModelOutput { return self }
+
+    // MARK: - Variable
+    fileprivate let twitterService: TwitterService
 
     // MARK: - Input
 
     // MARK: - Output
 
     // MARK: - Init
-    init() {
+    init(twitterService: TwitterService) {
+        self.twitterService = twitterService
+    }
 
+    public func sendMessage(text: String) {
+        let result = twitterService.processRawMessage(rawMessage: text)
+        print(result)
     }
 }

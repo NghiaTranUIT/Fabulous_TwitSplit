@@ -14,7 +14,7 @@ class TweetExtractor {
     fileprivate let characterExtractor: CharacterSet
 
     // MARK: - Init
-    init(characterExtractor: CharacterSet) {
+    init(characterExtractor: CharacterSet = CharacterSet.whitespaces) {
         self.characterExtractor = characterExtractor
     }
 

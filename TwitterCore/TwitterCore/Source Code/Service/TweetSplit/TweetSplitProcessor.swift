@@ -16,9 +16,9 @@ class TweetSplitProcessor {
     fileprivate let validator: TweetValidator
 
     // MARK: - Init
-    init(indicator: TweetIndicator,
-         extractor: TweetExtractor,
-         validator: TweetValidator,
+    init(indicator: TweetIndicator = TweetIndicator(),
+         extractor: TweetExtractor = TweetExtractor(),
+         validator: TweetValidator = TweetValidator(),
          configuration: SplitConfiguration = SplitConfiguration()) {
         self.indicator = indicator
         self.extractor = extractor
