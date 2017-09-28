@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BA9369821F7CAE38005F0D31 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9369831F7CAE38005F0D31 /* TwitterCore.framework */; };
+		BA93699B1F7D2825005F0D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93699A1F7D2825005F0D31 /* Constants.swift */; };
+		BA9369A01F7D287C005F0D31 /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93699E1F7D287C005F0D31 /* MessageViewCell.swift */; };
+		BA9369A11F7D287C005F0D31 /* MessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA93699F1F7D287C005F0D31 /* MessageViewCell.xib */; };
 		BA9FBF3F1F7CADF000A20B5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9FBF3E1F7CADF000A20B5C /* AppDelegate.swift */; };
 		BA9FBF411F7CADF000A20B5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9FBF401F7CADF000A20B5C /* ViewController.swift */; };
 		BA9FBF441F7CADF000A20B5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA9FBF421F7CADF000A20B5C /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		BA9369831F7CAE38005F0D31 /* TwitterCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA93699A1F7D2825005F0D31 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BA93699E1F7D287C005F0D31 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
+		BA93699F1F7D287C005F0D31 /* MessageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewCell.xib; sourceTree = "<group>"; };
 		BA9FBF3B1F7CADF000A20B5C /* TwitterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9FBF3E1F7CADF000A20B5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA9FBF401F7CADF000A20B5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +73,91 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BA9369931F7D27DB005F0D31 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				BA9FBF3E1F7CADF000A20B5C /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		BA9369941F7D27E5005F0D31 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BA9FBF401F7CADF000A20B5C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BA9369951F7D27EE005F0D31 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BA9369A21F7D2885005F0D31 /* Models */,
+				BA93699D1F7D283B005F0D31 /* View */,
+				BA9369941F7D27E5005F0D31 /* Controller */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		BA9369961F7D27F7005F0D31 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BA93699C1F7D282A005F0D31 /* Other */,
+				BA9369981F7D280D005F0D31 /* Assets */,
+				BA9369971F7D27FC005F0D31 /* Xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BA9369971F7D27FC005F0D31 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				BA9FBF421F7CADF000A20B5C /* Main.storyboard */,
+				BA9FBF471F7CADF000A20B5C /* LaunchScreen.storyboard */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		BA9369981F7D280D005F0D31 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				BA9FBF451F7CADF000A20B5C /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		BA9369991F7D281B005F0D31 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				BA93699A1F7D2825005F0D31 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		BA93699C1F7D282A005F0D31 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				BA9FBF4A1F7CADF000A20B5C /* Info.plist */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		BA93699D1F7D283B005F0D31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA93699E1F7D287C005F0D31 /* MessageViewCell.swift */,
+				BA93699F1F7D287C005F0D31 /* MessageViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA9369A21F7D2885005F0D31 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BA9FBF321F7CADF000A20B5C = {
 			isa = PBXGroup;
 			children = (
@@ -89,12 +180,10 @@
 		BA9FBF3D1F7CADF000A20B5C /* TwitterApp */ = {
 			isa = PBXGroup;
 			children = (
-				BA9FBF3E1F7CADF000A20B5C /* AppDelegate.swift */,
-				BA9FBF401F7CADF000A20B5C /* ViewController.swift */,
-				BA9FBF421F7CADF000A20B5C /* Main.storyboard */,
-				BA9FBF451F7CADF000A20B5C /* Assets.xcassets */,
-				BA9FBF471F7CADF000A20B5C /* LaunchScreen.storyboard */,
-				BA9FBF4A1F7CADF000A20B5C /* Info.plist */,
+				BA9369991F7D281B005F0D31 /* Constants */,
+				BA9369961F7D27F7005F0D31 /* Resources */,
+				BA9369951F7D27EE005F0D31 /* Source */,
+				BA9369931F7D27DB005F0D31 /* App Delegate */,
 			);
 			path = TwitterApp;
 			sourceTree = "<group>";
@@ -191,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9369A11F7D287C005F0D31 /* MessageViewCell.xib in Resources */,
 				BA9FBF491F7CADF000A20B5C /* LaunchScreen.storyboard in Resources */,
 				BA9FBF461F7CADF000A20B5C /* Assets.xcassets in Resources */,
 				BA9FBF441F7CADF000A20B5C /* Main.storyboard in Resources */,
@@ -211,8 +301,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9369A01F7D287C005F0D31 /* MessageViewCell.swift in Sources */,
 				BA9FBF411F7CADF000A20B5C /* ViewController.swift in Sources */,
 				BA9FBF3F1F7CADF000A20B5C /* AppDelegate.swift in Sources */,
+				BA93699B1F7D2825005F0D31 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
