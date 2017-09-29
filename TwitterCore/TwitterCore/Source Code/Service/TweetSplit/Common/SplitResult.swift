@@ -14,13 +14,13 @@ enum SplitResult {
 
     // Case
     case success(T)
-    case error(SplitError)
+    case error(ValidateError)
 
     public init?(rawValue: T) {
         self = .success(rawValue)
     }
 
-    public init(errorValue: SplitError) {
+    public init(errorValue: ValidateError) {
         self = .error(errorValue)
     }
 
@@ -62,7 +62,7 @@ enum SplitResult {
         }
     }
 
-    public var error: SplitError? {
+    public var error: ValidateError? {
         switch self {
         case .error(let error):
             return error

@@ -8,17 +8,32 @@
 
 import Foundation
 
-class TweetExtractor {
+/// TweetExtractorProtocol defind the common extraction
+protocol TweetExtractorProtocol {
+
+    /// Character Set for extractor
+    var characterSet: CharacterSet { get }
+
+    /// Extract function
+    ///
+    /// - Parameter message: The raw message needs to be extracts to each individual words
+    /// - Returns: Array of words
+    func extract(_ message: String) -> [String]
+}
+
+/// TweetExtractor
+struct TweetExtractor: TweetExtractorProtocol {
 
     // MARK: - Variable
-    fileprivate let characterExtractor: CharacterSet
+    fileprivate let configurable: TweetConfigurable
+    var characterSet: CharacterSet { return configurable.characterSet }
 
     // MARK: - Init
-    init(characterExtractor: CharacterSet = CharacterSet.whitespaces) {
-        self.characterExtractor = characterExtractor
+    init(configurable: TweetConfigurable) {
+        self.configurable = configurable
     }
 
     func extract(_ message: String) -> [String] {
-        return message.components(separatedBy: characterExtractor)
+        return message.components(separatedBy: characterSet)
     }
 }

@@ -8,19 +8,28 @@
 
 import Foundation
 
-struct TweetPage {
 
-    let index: Int
-    var max: Int
+/// <#Description#>
+protocol TweetIndicatorProtocol {
 
-    func toString() -> String {
-        return "\(index)/\(max)"
-    }
+    var index: Int { get }
+    var total: Int { get }
+
+    func toString() -> String
 }
 
-final class TweetIndicator {
 
-    func toString(_ page: TweetPage) -> String {
-        return "\(page.index)/\(page.max)"
+/// TweetPage represent the data of Indicator
+/// Format: index/total
+struct TweetIndicator: TweetIndicatorProtocol {
+
+    /// The current Index
+    let index: Int
+
+    /// The total number of page
+    var total: Int
+
+    func toString() -> String {
+        return "\(index)/\(total)"
     }
 }

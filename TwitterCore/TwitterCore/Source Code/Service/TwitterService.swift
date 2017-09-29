@@ -14,8 +14,12 @@ class TwitterService {
     fileprivate let splitProcessor: TweetSplitProcessor
 
     // MARK: - Init
-    init(splitProcessor: TweetSplitProcessor = TweetSplitProcessor()) {
+    init(splitProcessor: TweetSplitProcessor) {
         self.splitProcessor = splitProcessor
+    }
+
+    init() {
+        self.splitProcessor = TweetSplitProcessor()
     }
 
     func processRawMessage(rawMessage: String) -> SplitResult {

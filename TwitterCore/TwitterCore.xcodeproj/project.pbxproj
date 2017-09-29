@@ -14,8 +14,8 @@
 		BA9369921F7D27A6005F0D31 /* TwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369911F7D27A6005F0D31 /* TwitterService.swift */; };
 		BA9369A41F7D28A8005F0D31 /* ViewModelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369A31F7D28A8005F0D31 /* ViewModelCoordinator.swift */; };
 		BA9369A81F7D2A06005F0D31 /* SplitResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369A71F7D2A06005F0D31 /* SplitResult.swift */; };
-		BA9369AA1F7D2A1E005F0D31 /* SplitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369A91F7D2A1E005F0D31 /* SplitError.swift */; };
-		BA9369AD1F7D2A4D005F0D31 /* SplitConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369AC1F7D2A4D005F0D31 /* SplitConfiguration.swift */; };
+		BA9369AA1F7D2A1E005F0D31 /* ValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369A91F7D2A1E005F0D31 /* ValidateError.swift */; };
+		BA9369AD1F7D2A4D005F0D31 /* TweetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369AC1F7D2A4D005F0D31 /* TweetConfiguration.swift */; };
 		BA9369AF1F7D2AE5005F0D31 /* TweetSplitProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369AE1F7D2AE5005F0D31 /* TweetSplitProcessor.swift */; };
 		BA9369B11F7D2B20005F0D31 /* TweetValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369B01F7D2B20005F0D31 /* TweetValidator.swift */; };
 		BA9369B31F7D2B31005F0D31 /* TweetExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369B21F7D2B31005F0D31 /* TweetExtractor.swift */; };
@@ -24,6 +24,8 @@
 		BA9369B91F7D2E95005F0D31 /* TweetObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369B81F7D2E95005F0D31 /* TweetObj.swift */; };
 		BA9369BB1F7D34C1005F0D31 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369BA1F7D34C1005F0D31 /* AppViewModel.swift */; };
 		BA9369BD1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369BC1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift */; };
+		BA9E21CF1F7DF17C0032909C /* TweetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E21CE1F7DF17C0032909C /* TweetComponent.swift */; };
+		BA9E21D21F7DFC1B0032909C /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E21D11F7DFC1B0032909C /* String+Trim.swift */; };
 		BA9FBF721F7CAE1600A20B5C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9FBF681F7CAE1600A20B5C /* TwitterCore.framework */; };
 		BA9FBF771F7CAE1600A20B5C /* TwitterCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9FBF761F7CAE1600A20B5C /* TwitterCoreTests.swift */; };
 		BA9FBF791F7CAE1600A20B5C /* TwitterCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BA9FBF6B1F7CAE1600A20B5C /* TwitterCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,8 +49,8 @@
 		BA9369911F7D27A6005F0D31 /* TwitterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterService.swift; sourceTree = "<group>"; };
 		BA9369A31F7D28A8005F0D31 /* ViewModelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCoordinator.swift; sourceTree = "<group>"; };
 		BA9369A71F7D2A06005F0D31 /* SplitResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitResult.swift; sourceTree = "<group>"; };
-		BA9369A91F7D2A1E005F0D31 /* SplitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitError.swift; sourceTree = "<group>"; };
-		BA9369AC1F7D2A4D005F0D31 /* SplitConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitConfiguration.swift; sourceTree = "<group>"; };
+		BA9369A91F7D2A1E005F0D31 /* ValidateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateError.swift; sourceTree = "<group>"; };
+		BA9369AC1F7D2A4D005F0D31 /* TweetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetConfiguration.swift; sourceTree = "<group>"; };
 		BA9369AE1F7D2AE5005F0D31 /* TweetSplitProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSplitProcessor.swift; sourceTree = "<group>"; };
 		BA9369B01F7D2B20005F0D31 /* TweetValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetValidator.swift; sourceTree = "<group>"; };
 		BA9369B21F7D2B31005F0D31 /* TweetExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetExtractor.swift; sourceTree = "<group>"; };
@@ -57,6 +59,8 @@
 		BA9369B81F7D2E95005F0D31 /* TweetObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetObj.swift; sourceTree = "<group>"; };
 		BA9369BA1F7D34C1005F0D31 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		BA9369BC1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSplitProcessorTests.swift; sourceTree = "<group>"; };
+		BA9E21CE1F7DF17C0032909C /* TweetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetComponent.swift; sourceTree = "<group>"; };
+		BA9E21D11F7DFC1B0032909C /* String+Trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
 		BA9FBF681F7CAE1600A20B5C /* TwitterCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TwitterCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9FBF6B1F7CAE1600A20B5C /* TwitterCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterCore.h; sourceTree = "<group>"; };
 		BA9FBF6C1F7CAE1600A20B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 		BA9369841F7D26DC005F0D31 /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
+				BA9E21D01F7DFC0F0032909C /* Extension */,
 				BA9369901F7D279D005F0D31 /* Service */,
 				BA93698B1F7D270F005F0D31 /* Objects */,
 				BA9369881F7D26F9005F0D31 /* View Models */,
@@ -140,6 +145,7 @@
 				BA9369B01F7D2B20005F0D31 /* TweetValidator.swift */,
 				BA9369B21F7D2B31005F0D31 /* TweetExtractor.swift */,
 				BA9369B41F7D2B45005F0D31 /* TweetIndicator.swift */,
+				BA9E21CE1F7DF17C0032909C /* TweetComponent.swift */,
 				BA9369B61F7D2D22005F0D31 /* TweetBuilder.swift */,
 			);
 			path = TweetSplit;
@@ -149,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				BA9369A71F7D2A06005F0D31 /* SplitResult.swift */,
-				BA9369A91F7D2A1E005F0D31 /* SplitError.swift */,
+				BA9369A91F7D2A1E005F0D31 /* ValidateError.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -157,9 +163,17 @@
 		BA9369AB1F7D2A3A005F0D31 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				BA9369AC1F7D2A4D005F0D31 /* SplitConfiguration.swift */,
+				BA9369AC1F7D2A4D005F0D31 /* TweetConfiguration.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		BA9E21D01F7DFC0F0032909C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BA9E21D11F7DFC1B0032909C /* String+Trim.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		BA9FBF5E1F7CAE1600A20B5C = {
@@ -314,17 +328,19 @@
 			files = (
 				BA9369A81F7D2A06005F0D31 /* SplitResult.swift in Sources */,
 				BA9369B71F7D2D22005F0D31 /* TweetBuilder.swift in Sources */,
-				BA9369AA1F7D2A1E005F0D31 /* SplitError.swift in Sources */,
+				BA9E21D21F7DFC1B0032909C /* String+Trim.swift in Sources */,
+				BA9369AA1F7D2A1E005F0D31 /* ValidateError.swift in Sources */,
 				BA9369B91F7D2E95005F0D31 /* TweetObj.swift in Sources */,
 				BA9369BB1F7D34C1005F0D31 /* AppViewModel.swift in Sources */,
 				BA9369B51F7D2B45005F0D31 /* TweetIndicator.swift in Sources */,
 				BA93698D1F7D2718005F0D31 /* UserObj.swift in Sources */,
 				BA9369A41F7D28A8005F0D31 /* ViewModelCoordinator.swift in Sources */,
-				BA9369AD1F7D2A4D005F0D31 /* SplitConfiguration.swift in Sources */,
+				BA9369AD1F7D2A4D005F0D31 /* TweetConfiguration.swift in Sources */,
 				BA93698A1F7D270B005F0D31 /* TwitterViewModel.swift in Sources */,
 				BA9369B11F7D2B20005F0D31 /* TweetValidator.swift in Sources */,
 				BA9369921F7D27A6005F0D31 /* TwitterService.swift in Sources */,
 				BA9369B31F7D2B31005F0D31 /* TweetExtractor.swift in Sources */,
+				BA9E21CF1F7DF17C0032909C /* TweetComponent.swift in Sources */,
 				BA9369AF1F7D2AE5005F0D31 /* TweetSplitProcessor.swift in Sources */,
 				BA9369871F7D26EE005F0D31 /* Constants.swift in Sources */,
 				BA93698F1F7D271F005F0D31 /* MessageObj.swift in Sources */,

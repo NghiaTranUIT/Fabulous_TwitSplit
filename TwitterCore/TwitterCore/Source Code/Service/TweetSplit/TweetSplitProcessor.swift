@@ -10,51 +10,68 @@ import Foundation
 
 class TweetSplitProcessor {
 
-    fileprivate let configuration: SplitConfiguration
-    fileprivate let indicator: TweetIndicator
-    fileprivate let extractor: TweetExtractor
-    fileprivate let validator: TweetValidator
+    fileprivate let configuration: TweetConfigurable
+    fileprivate let indicator: TweetIndicatorProtocol
+    fileprivate let extractor: TweetExtractorProtocol
+    fileprivate let validator: TweetValidatorProtocol
 
     // MARK: - Init
-    init(indicator: TweetIndicator = TweetIndicator(),
-         extractor: TweetExtractor = TweetExtractor(),
-         validator: TweetValidator = TweetValidator(),
-         configuration: SplitConfiguration = SplitConfiguration()) {
+    init(indicator: TweetIndicatorProtocol,
+         extractor: TweetExtractorProtocol,
+         validator: TweetValidatorProtocol,
+         configuration: TweetConfigurable) {
         self.indicator = indicator
         self.extractor = extractor
         self.validator = validator
         self.configuration = configuration
     }
 
+    init() {
+        self.configuration = TweetConfiguration()
+        self.indicator = TweetIndicator(index: 0, total: 0)
+        self.extractor = TweetExtractor(configurable: self.configuration)
+        self.validator = TweetValidator()
+    }
+
     func process(_ message: String) -> SplitResult {
 
         // Trim
         let message = message.trim()
-        if message.isEmpty {
-            return SplitResult.error(.invalid)
+
+        // Validate
+        if let error = validator.validateEmptyMessage(message) {
+            return .error(error)
         }
 
-        if message.count < 50 {
+        // If meet requirement -> Length message is lesser than Max
+        // Return
+        if message.count < configuration.maxTweetCharacterCount {
             return .success([TweetObj(text: message)])
         }
+
+        // Split and build appropriate Tweet Message
+        return buildTweet(with: message)
+    }
+}
+
+// MARK: - Private
+extension TweetSplitProcessor {
+
+    fileprivate func buildTweet(with message: String) -> SplitResult {
 
         // Extract to each word
         let words = extractor.extract(message)
 
         // Validate
-        if let error = validator.validate(words, max: configuration.maxCharacter) {
-            return SplitResult.error(error)
+        if let error = validator.validateWordExcessMaximumCount(words,
+                                                                max: configuration.maxTweetCharacterCount) {
+            return .error(error)
         }
 
         // Build Tweet
-        let builder = TweetBuilder(indicator: indicator, words: words, configuration: configuration)
+        let builder = TweetBuilder(words: words,
+                                   indicator: indicator,
+                                   configuration: configuration)
         return builder.process()
-    }
-}
-
-extension String {
-
-    func trim() -> String {
-        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }

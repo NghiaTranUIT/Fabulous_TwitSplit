@@ -68,7 +68,7 @@ class TweetSplitProcessorTests: XCTestCase {
         }
     }
 
-    func testNormalCase() {
+    func testCreateTweetComponentWithNewOneCase() {
 
         // Give
         let input = "Twitter mostly uses Ruby on Rails for their front-end and primarily Scala and Java for back-end services. They use Apache Thrift (originally developed by Facebook) to communicate between different internal services."
@@ -86,6 +86,45 @@ class TweetSplitProcessorTests: XCTestCase {
         case .success(let tweets):
             print(tweets.mapToString())
             assert(expected == tweets.mapToString(), "OK")
+        }
+    }
+
+    func testCreateTweetComponentCase() {
+
+        // Give
+        let input = "Facebook just switched several of its open source projects — including React — over to the popular MIT license. Before that, Facebook was using their own custom “BSD+Patents” license. This was similar to the widely-used BSD license, but also included a clause that basically said: “you can’t sue Facebook for infringing on your patents. This license came under fire this summer. Here’s what happened."
+
+        let expected = ["1/9 Facebook just switched several of its open", "2/9 source projects — including React — over to", "3/9 the popular MIT license. Before that, Facebook", "4/9 was using their own custom “BSD+Patents”", "5/9 license. This was similar to the widely-used", "6/9 BSD license, but also included a clause that", "7/9 basically said: “you can’t sue Facebook for", "8/9 infringing on your patents. This license came", "9/9 under fire this summer. Here’s what happened."]
+
+        // When
+        let processor = TweetSplitProcessor()
+        let result = processor.process(input)
+
+        // Then
+        switch result {
+        case .error(let error):
+            assertionFailure(error.localizedDescription)
+        case .success(let tweets):
+            print(tweets.mapToString())
+            assert(expected == tweets.mapToString(), "OK")
+        }
+    }
+
+    func testOneWordIsExcessMaximumCase() {
+
+        // Give
+        let input = "Facebook just switched several of its open source projects — including ReactReactReactReactReactReactReactReactReactReactReactReactReactReactReact — over to the popular MIT license. Before that, Facebook was using their own custom “BSD+Patents” license. This was similar to the widely-used BSD license, but also included a clause that basically said: “you can’t sue Facebook for infringing on your patents. This license came under fire this summer. Here’s what happened."
+
+        // When
+        let processor = TweetSplitProcessor()
+        let result = processor.process(input)
+
+        // Then
+        switch result {
+        case .error(let error):
+            assert(error == .invalid, error.localizedDescription)
+        case .success:
+            assertionFailure("Wrong")
         }
     }
 }

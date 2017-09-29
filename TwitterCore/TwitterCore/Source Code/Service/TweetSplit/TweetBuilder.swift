@@ -8,99 +8,80 @@
 
 import Foundation
 
-class TweetComponent {
-
-    fileprivate var wordStacks: [String] = []
-    fileprivate var wordCount = 0
-    fileprivate var page: TweetPage
-
-    init(page: TweetPage) {
-        self.page = page
-    }
-
-    func updateMaxPage(_ max: Int) {
-        page.max = max
-    }
-
-    func add(_ newWord: String, indicator: TweetIndicator, isEnd: Bool) -> Bool {
-
-        let nextCount = wordCount + newWord.count + indicator.toString(page).count
-        let spaceCount = 1 + wordStacks.count
-
-        guard nextCount + spaceCount <= 50 else {
-            return false
-        }
-
-        // Add to stack
-        wordStacks.append(newWord)
-        wordCount += newWord.count
-
-        return true
-    }
-
-    func build() -> TweetObj {
-
-        // Append at begin
-        let allWords = [page.toString()] + wordStacks
-
-        // Create sentences
-        let content = allWords.joined(separator: " ")
-
-        // Return obj
-        return TweetObj(text: content)
-    }
-}
-
 class TweetBuilder {
 
     // MARK: - Variable
-    fileprivate let configuration: SplitConfiguration
-    fileprivate let indicator: TweetIndicator
+    fileprivate let configuration: TweetConfigurable
+    fileprivate let indicator: TweetIndicatorProtocol
     fileprivate let words: [String] 
 
-    init(indicator: TweetIndicator, words: [String], configuration: SplitConfiguration) {
-        self.indicator = indicator
+    // MARK: - Init
+    init(words: [String], indicator: TweetIndicatorProtocol, configuration: TweetConfigurable) {
         self.words = words
+        self.indicator = indicator
         self.configuration = configuration
     }
 
+    // MARK: - Func
+
+
+    /// Main Tweet Split func goes here
+    ///
+    /// - Returns: The result
     func process() -> SplitResult {
 
+        // Prepare
         var components: [TweetComponent] = []
-        var page = TweetPage(index: 1, max: 1)
+        var page = TweetIndicator(index: 1, total: 1)
         var currentPage = 1
-        var currentComponent = TweetComponent(page: page)
+        var currentComponent = TweetComponent(indicator: page)
 
+        // While
+        // After careful consideration, I prefer linear while loop instead of Recursive function
+        // Because both have same Time Complexity
+        // It's O(n)
+
+        // The noticed drawback of recursive function is hard for reading
+        // Recursive func also depend heavily on the number of Stack which allow by the current iOS hardward
+        //
+
+        // Furthermore, While-loop is self-explanatory
+        // However, it seem to be slow a little bit when the number of tweets grow up
+        // We could refactor TweetComponent by using LinkedList rather than ordinary Array
         var i = 0
         while i < words.count {
 
             let word = words[i]
-            let isEnd = i == (words.count - 1)
-            let isAdded = currentComponent.add(word, indicator: indicator, isEnd: isEnd)
-            if isAdded == false {
+            let isExcess = currentComponent.append(word,
+                                                  maxCount: configuration.maxTweetCharacterCount)
+
+            // The tweet is excessed
+            if isExcess {
 
                 // Add new component
                 components.append(currentComponent)
                 currentPage += 1
 
                 // Reset
-                page = TweetPage(index: currentPage, max: 0)
-                currentComponent = TweetComponent(page: page)
+                page = TweetIndicator(index: currentPage, total: 0)
+                currentComponent = TweetComponent(indicator: page)
+                continue
             }
-            else {
-                i += 1
-            }
+
+            // Increase by 1
+            i += 1
         }
 
         // Add last one
         components.append(currentComponent)
 
-        // Build
+        // Map from TweetComponent -> TweetObj
         let tweets = components.map { (component) -> TweetObj in
-            component.updateMaxPage(currentPage)
+            component.updateTotalPage(currentPage)
             return component.build()
         }
 
-        return SplitResult.init(rawValue: tweets)!
+        // Success
+        return .success(tweets)
     }
 }
