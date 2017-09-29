@@ -47,7 +47,7 @@ struct TweetValidator: TweetValidatorProtocol {
 
         // Find if there is any one is
         guard words.first(where: {$0.count > max}) == nil else {
-            return .invalid
+            return .wordLengthExcess
         }
 
         return nil

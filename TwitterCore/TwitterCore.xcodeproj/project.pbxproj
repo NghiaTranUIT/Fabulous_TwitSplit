@@ -29,6 +29,10 @@
 		BA9FBF721F7CAE1600A20B5C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9FBF681F7CAE1600A20B5C /* TwitterCore.framework */; };
 		BA9FBF771F7CAE1600A20B5C /* TwitterCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9FBF761F7CAE1600A20B5C /* TwitterCoreTests.swift */; };
 		BA9FBF791F7CAE1600A20B5C /* TwitterCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BA9FBF6B1F7CAE1600A20B5C /* TwitterCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BADD10EC1F7E055B00887372 /* TweetValidatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADD10EB1F7E055B00887372 /* TweetValidatorTest.swift */; };
+		BADD10EE1F7E077200887372 /* DefaultTweetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADD10ED1F7E077200887372 /* DefaultTweetConfiguration.swift */; };
+		BADD10F01F7E08C500887372 /* TweetExtractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADD10EF1F7E08C500887372 /* TweetExtractorTest.swift */; };
+		BADD10F21F7E0AB400887372 /* TweetComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADD10F11F7E0AB400887372 /* TweetComponentTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		BA9FBF711F7CAE1600A20B5C /* TwitterCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9FBF761F7CAE1600A20B5C /* TwitterCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCoreTests.swift; sourceTree = "<group>"; };
 		BA9FBF781F7CAE1600A20B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BADD10EB1F7E055B00887372 /* TweetValidatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetValidatorTest.swift; sourceTree = "<group>"; };
+		BADD10ED1F7E077200887372 /* DefaultTweetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTweetConfiguration.swift; sourceTree = "<group>"; };
+		BADD10EF1F7E08C500887372 /* TweetExtractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetExtractorTest.swift; sourceTree = "<group>"; };
+		BADD10F11F7E0AB400887372 /* TweetComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetComponentTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,11 +216,31 @@
 		BA9FBF751F7CAE1600A20B5C /* TwitterCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				BADD10EA1F7E053E00887372 /* Tweet Split */,
+				BADD10E81F7E052E00887372 /* Twitter Service */,
 				BA9FBF761F7CAE1600A20B5C /* TwitterCoreTests.swift */,
 				BA9FBF781F7CAE1600A20B5C /* Info.plist */,
 				BA9369BC1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift */,
+				BADD10ED1F7E077200887372 /* DefaultTweetConfiguration.swift */,
 			);
 			path = TwitterCoreTests;
+			sourceTree = "<group>";
+		};
+		BADD10E81F7E052E00887372 /* Twitter Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Twitter Service";
+			sourceTree = "<group>";
+		};
+		BADD10EA1F7E053E00887372 /* Tweet Split */ = {
+			isa = PBXGroup;
+			children = (
+				BADD10EB1F7E055B00887372 /* TweetValidatorTest.swift */,
+				BADD10EF1F7E08C500887372 /* TweetExtractorTest.swift */,
+				BADD10F11F7E0AB400887372 /* TweetComponentTests.swift */,
+			);
+			path = "Tweet Split";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,7 +379,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADD10EE1F7E077200887372 /* DefaultTweetConfiguration.swift in Sources */,
 				BA9FBF771F7CAE1600A20B5C /* TwitterCoreTests.swift in Sources */,
+				BADD10EC1F7E055B00887372 /* TweetValidatorTest.swift in Sources */,
+				BADD10F21F7E0AB400887372 /* TweetComponentTests.swift in Sources */,
+				BADD10F01F7E08C500887372 /* TweetExtractorTest.swift in Sources */,
 				BA9369BD1F7D36DA005F0D31 /* TweetSplitProcessorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

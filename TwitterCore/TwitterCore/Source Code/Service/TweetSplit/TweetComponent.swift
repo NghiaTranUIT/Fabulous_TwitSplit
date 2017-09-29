@@ -16,17 +16,19 @@ class TweetComponent {
     // MARK: - Variable
 
     /// Contain array of words
-    fileprivate var wordStacks: [String] = []
+    fileprivate var wordStacks: [String]
 
     /// Current word count
-    fileprivate var wordCount = 0
+    fileprivate var wordCount: Int
 
     /// Current Indicator
-    fileprivate var indicator: TweetIndicator
+    fileprivate var indicator: TweetIndicatorProtocol
 
     // MARK: - Init
-    init(indicator: TweetIndicator) {
+    init(indicator: TweetIndicatorProtocol, wordStacks: [String] = []) {
         self.indicator = indicator
+        self.wordStacks = wordStacks
+        self.wordCount = wordStacks.map { $0.count }.reduce(0, +) // Sum all word's count
     }
 
     // MARK: - Functions

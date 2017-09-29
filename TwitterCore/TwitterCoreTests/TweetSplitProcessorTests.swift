@@ -62,7 +62,7 @@ class TweetSplitProcessorTests: XCTestCase {
         // Then
         switch result {
         case .error(let error):
-            assert(error == .invalid, error.localizedDescription)
+            assert(error == .wordLengthExcess, error.localizedDescription)
         case .success:
             assertionFailure("Wrong")
         }
@@ -122,7 +122,7 @@ class TweetSplitProcessorTests: XCTestCase {
         // Then
         switch result {
         case .error(let error):
-            assert(error == .invalid, error.localizedDescription)
+            assert(error == .wordLengthExcess, error.localizedDescription)
         case .success:
             assertionFailure("Wrong")
         }

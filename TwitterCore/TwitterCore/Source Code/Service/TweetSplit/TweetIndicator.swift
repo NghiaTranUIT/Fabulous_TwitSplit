@@ -13,7 +13,7 @@ import Foundation
 protocol TweetIndicatorProtocol {
 
     var index: Int { get }
-    var total: Int { get }
+    var total: Int { get set }
 
     func toString() -> String
 }
