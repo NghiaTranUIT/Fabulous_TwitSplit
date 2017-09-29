@@ -30,37 +30,31 @@ class TweetBuilder {
     /// - Returns: The result
     func build() -> SplitResult {
 
+        // Process
         let result = processTweetComponents()
-        let components = result.0
-        let totalPage = result.1
-        
-        let tweets = components.map { (component) -> TweetObj in
-            component.updateTotalPage(totalPage)
-            return component.build()
-        }
+        var components = result.0
 
-        // Check to re-build if need
+        // Check to re-build Tweet if need
+        //
         // In tough scenario, the length of total page in Indicator is too large
         // It causes a increase of total character of Tweet in order to break to MaximumCharacter Rule
-        let toughCase = tweets.filter { $0.text.count > configuration.maxTweetCharacterCount }
+        // Ex: Please look at the README.md
+        //
+        let toughCase = components.filter { $0.build().text.count > configuration.maxTweetCharacterCount }
         if toughCase.count > 0 {
-
-            let result = processTweetComponents(totalPage)
-            let components = result.0
             let totalPage = result.1
-
-            let tweets = components.map { (component) -> TweetObj in
-                component.updateTotalPage(totalPage)
-                return component.build()
-            }
-
-            return .success(tweets)
+            let result = processTweetComponents(totalPage)
+            components = result.0
         }
 
-
         // Success
+        let tweets = components.map { $0.build() }
         return .success(tweets)
     }
+}
+
+// MARK: - Private
+extension TweetBuilder {
 
     fileprivate func processTweetComponents(_ totalPage: Int = 1) -> ([TweetComponent], Int) {
 
@@ -108,6 +102,11 @@ class TweetBuilder {
 
         // Add last one
         components.append(currentComponent)
+
+        // Update total tweet again
+        // Because we're unable to estimate how many tweet in total before processing
+        // It's time to update page again
+        components.forEach { $0.updateTotalPage(currentPage) }
 
         return (components, currentPage)
     }

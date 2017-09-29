@@ -38,10 +38,12 @@ class TweetBuilderTest: XCTestCase {
         let indicator = FakeTweetIndicator(index: 1, total: 1)
         let builder = TweetBuilder(words: words, indicator: indicator, configuration: tweetConfiguration)
         let result = builder.build()
+        let tweets = result.rawValue.mapToString()
 
         // Then
         XCTAssert(result.isSucces, "Should process successfully")
-        XCTAssert(result.rawValue.mapToString() == expected, "TweetComponents didn't match with original message")
+                XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
+        XCTAssert(tweets == expected, "TweetComponents didn't match with original message")
     }
 
     func testTweetWithSameIndicatorFormat() {
@@ -65,7 +67,40 @@ class TweetBuilderTest: XCTestCase {
 
         // Then
         XCTAssert(result.isSucces, "Should process successfully")
-        XCTAssert(tweets.filter { $0.count > tweetConfiguration.maxTweetCharacterCount }.isEmpty, "There is no Tweet which length is excessed the maximum")
+        XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
+        XCTAssert(tweets == expected, "TweetComponents didn't match with original message")
+    }
+
+    func testToughtScenarioWhenTheTotalPageOfIndicatorIncreaseTheLengthOfTweet() {
+        let input = "Apart from counting words and characters, our online editor can help you to improve word choice and writing style, and, optionally, help you to detect grammar mistakes and plagiarism. To check word count, simply place your cursor into the text box above and start typing. You'll see the number of characters and words increase or decrease as you type, delete, and edit them. You can also copy and paste text from another program over into the online editor above. The Auto-Save feature will make sure you won't lose any changes while editing, even if you leave the site and come back later. Tip: Bookmark this page now."
+
+        let words = FakeTweetExtractor().extract(input)
+        let expected = ["1/15 Apart from counting words and characters, our",
+                        "2/15 online editor can help you to improve word",
+                        "3/15 choice and writing style, and, optionally,",
+                        "4/15 help you to detect grammar mistakes and",
+                        "5/15 plagiarism. To check word count, simply place",
+                        "6/15 your cursor into the text box above and start",
+                        "7/15 typing. You\'ll see the number of characters",
+                        "8/15 and words increase or decrease as you type,",
+                        "9/15 delete, and edit them. You can also copy and",
+                        "10/15 paste text from another program over into",
+                        "11/15 the online editor above. The Auto-Save",
+                        "12/15 feature will make sure you won\'t lose any",
+                        "13/15 changes while editing, even if you leave the",
+                        "14/15 site and come back later. Tip: Bookmark this",
+                        "15/15 page now."]
+
+        // When
+        let indicator = FakeTweetIndicator(index: 1, total: 1)
+        let builder = TweetBuilder(words: words, indicator: indicator, configuration: tweetConfiguration)
+        let result = builder.build()
+        let tweets = result.rawValue.mapToString()
+        print(tweets)
+
+        // Then
+        XCTAssert(result.isSucces, "Should process successfully")
+        XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
         XCTAssert(tweets == expected, "TweetComponents didn't match with original message")
     }
 
@@ -88,7 +123,7 @@ class TweetBuilderTest: XCTestCase {
 
         // Then
         XCTAssert(result.isSucces, "Should process successfully")
-        XCTAssert(tweets.filter { $0.count > tweetConfiguration.maxTweetCharacterCount }.isEmpty, "There is no Tweet which length is excessed the maximum")
+        XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
         XCTAssert( tweets == expected, "TweetComponents didn't match with original message")
     }
 

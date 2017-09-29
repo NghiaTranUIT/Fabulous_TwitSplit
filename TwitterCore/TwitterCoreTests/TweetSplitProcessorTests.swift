@@ -9,15 +9,6 @@
 import XCTest
 @testable import TwitterCore
 
-extension Array where Element == TweetObj {
-
-    func mapToString() -> [String] {
-        return self.map{ (i) -> String in
-            return i.text
-        }
-    }
-}
-
 class TweetSplitProcessorTests: XCTestCase {
     
     override func setUp() {
