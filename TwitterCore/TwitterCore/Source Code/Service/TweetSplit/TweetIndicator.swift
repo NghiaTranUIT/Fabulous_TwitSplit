@@ -12,23 +12,30 @@ import Foundation
 /// <#Description#>
 protocol TweetIndicatorProtocol {
 
-    var index: Int { get }
+    var index: Int { get set }
     var total: Int { get set }
 
     func toString() -> String
 }
 
+extension TweetIndicatorProtocol {
+
+    mutating func update(_ index: Int, total: Int) {
+        self.index = index
+        self.total = total
+    }
+}
 
 /// TweetPage represent the data of Indicator
 /// Format: index/total
 struct TweetIndicator: TweetIndicatorProtocol {
 
     /// The current Index
-    let index: Int
+    var index: Int
 
     /// The total number of page
     var total: Int
-
+    
     func toString() -> String {
         return "\(index)/\(total)"
     }

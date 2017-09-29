@@ -9,16 +9,6 @@
 import XCTest
 @testable import TwitterCore
 
-struct FakeTweetIndicator: TweetIndicatorProtocol {
-
-    let index: Int
-    var total: Int
-
-    func toString() -> String {
-        return "\(index)/\(total)"
-    }
-}
-
 class TweetComponentTests: XCTestCase {
 
     fileprivate let tweetConfiguration = TweetDefaultConfiguration.default

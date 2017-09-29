@@ -72,6 +72,6 @@ extension TweetSplitProcessor {
         let builder = TweetBuilder(words: words,
                                    indicator: indicator,
                                    configuration: configuration)
-        return builder.process()
+        return builder.build()
     }
 }
