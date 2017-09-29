@@ -20,7 +20,7 @@ extension Array where Element == TweetObj {
 
 extension Array where Element == String {
 
-    func isExcessTheMaximum(_ max: Int) -> Bool {
+    func isExcess(_ max: Int) -> Bool {
         return self.filter { $0.count > max }.isEmpty
     }
 }

@@ -34,7 +34,7 @@ class TweetExtractorTest: XCTestCase {
 
         // Then
         let result = extractor.extract(message)
-        XCTAssert(result == expected, "TweetExtractor should split whole mssage to individual words by white-space")
+        XCTAssertEqual(result, expected, "TweetExtractor should split whole mssage to individual words by white-space")
     }
 
 }

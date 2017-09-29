@@ -36,7 +36,7 @@ class TweetComponentTests: XCTestCase {
         let tweetObj = component.build()
 
         // Then
-        XCTAssert(tweetObj.text == expected, "TweetObj's text doesn't match with words which built from TweetComponent")
+        XCTAssertEqual(tweetObj.text, expected, "TweetObj's text doesn't match with words which built from TweetComponent")
     }
 
     func testUpdateTotalPage() {
@@ -52,7 +52,7 @@ class TweetComponentTests: XCTestCase {
         let tweet = component.build()
 
         // Then
-        XCTAssert(tweet.text == expected.toString(), "Indicator page didn't update the total number")
+        XCTAssertEqual(tweet.text, expected.toString(), "Indicator page didn't update the total number")
     }
 
     func testAppendNewWordIntoStackWithoutExcessed() {

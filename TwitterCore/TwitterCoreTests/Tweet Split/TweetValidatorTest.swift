@@ -34,7 +34,7 @@ class TweetValidatorTest: XCTestCase {
         // Then
         let error = validator.validateEmptyMessage(message)
         XCTAssertNotNil(error, "Empty Message is invalid")
-        XCTAssert(error! == .invalid, "Validate Result should be invalid")
+        XCTAssertEqual(error!, .invalid, "Validate Result should be invalid")
     }
 
     func testMessageContainsOneWordExcessMaximum() {
@@ -50,7 +50,7 @@ class TweetValidatorTest: XCTestCase {
         let error = validator.validateWordExcessMaximumCount(words,
                                                              max: tweetConfiguration.maxTweetCharacterCount)
         XCTAssertNotNil(error, "Empty Message is invalid")
-        XCTAssert(error! == .wordLengthExcess, "Validate Result should be invalid")
+        XCTAssertEqual(error!, .wordLengthExcess, "Validate Result should be invalid")
     }
 
 }

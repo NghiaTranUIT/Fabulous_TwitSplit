@@ -41,9 +41,9 @@ class TweetBuilderTest: XCTestCase {
         let tweets = result.rawValue.mapToString()
 
         // Then
-        XCTAssert(result.isSucces, "Should process successfully")
-                XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
-        XCTAssert(tweets == expected, "TweetComponents didn't match with original message")
+        XCTAssertTrue(result.isSucces, "Should process successfully")
+        XCTAssertTrue(tweets.isExcess(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
+        XCTAssertEqual(tweets, expected, "TweetComponents didn't match with original message")
     }
 
     func testTweetWithSameIndicatorFormat() {
@@ -66,9 +66,9 @@ class TweetBuilderTest: XCTestCase {
         print(tweets)
 
         // Then
-        XCTAssert(result.isSucces, "Should process successfully")
-        XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
-        XCTAssert(tweets == expected, "TweetComponents didn't match with original message")
+        XCTAssertTrue(result.isSucces, "Should process successfully")
+        XCTAssertTrue(tweets.isExcess(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
+        XCTAssertEqual(tweets, expected, "TweetComponents didn't match with original message")
     }
 
     func testToughtScenarioWhenTheTotalPageOfIndicatorIncreaseTheLengthOfTweet() {
@@ -96,15 +96,14 @@ class TweetBuilderTest: XCTestCase {
         let builder = TweetBuilder(words: words, indicator: indicator, configuration: tweetConfiguration)
         let result = builder.build()
         let tweets = result.rawValue.mapToString()
-        print(tweets)
 
         // Then
-        XCTAssert(result.isSucces, "Should process successfully")
-        XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
-        XCTAssert(tweets == expected, "TweetComponents didn't match with original message")
+        XCTAssertTrue(result.isSucces, "Should process successfully")
+        XCTAssertTrue(tweets.isExcess(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
+        XCTAssertEqual(tweets, expected, "TweetComponents didn't match with original message")
     }
 
-    func testIndicatorSameFormatWithSquareTweetIndicator() {
+    func testIndicatorSameFormatWithCustomTweetIndicator() {
         let input = "Linearity is the property of a mathematical relationship or function which means that it can be graphically represented as a straight line. Examples are the relationship of voltage and current across a resistor, or the mass and weight of an object."
 
         let words = FakeTweetExtractor().extract(input)
@@ -122,9 +121,9 @@ class TweetBuilderTest: XCTestCase {
         let tweets = result.rawValue.mapToString()
 
         // Then
-        XCTAssert(result.isSucces, "Should process successfully")
-        XCTAssert(tweets.isExcessTheMaximum(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
-        XCTAssert( tweets == expected, "TweetComponents didn't match with original message")
+        XCTAssertTrue(result.isSucces, "Should process successfully")
+        XCTAssertTrue(tweets.isExcess(tweetConfiguration.maxTweetCharacterCount), "There is no Tweet which length is excessed the maximum")
+        XCTAssertEqual(tweets, expected, "TweetComponents didn't match with original message")
     }
 
 
