@@ -8,8 +8,12 @@
 
 import Foundation
 
+/// TweetSplitProcessor is responsible for building list of appropriate Tweet
+/// It's designed for customizable
+/// Such as Configuration, Indicator, Extractor, Validator, ...
 class TweetSplitProcessor {
 
+    // MARK: - Variable
     fileprivate let configuration: TweetConfigurable
     fileprivate let indicator: TweetIndicatorProtocol
     fileprivate let extractor: TweetExtractorProtocol
@@ -26,6 +30,7 @@ class TweetSplitProcessor {
         self.configuration = configuration
     }
 
+    // MARK: - Default
     init() {
         self.configuration = TweetConfiguration()
         self.indicator = TweetIndicator(index: 0, total: 0)
@@ -33,6 +38,11 @@ class TweetSplitProcessor {
         self.validator = TweetValidator()
     }
 
+    /// Main Process function.
+    /// Take various setting (Indicator, Extractor, Validator) in order to build appropriately Tweet
+    ///
+    /// - Parameter message: Original message from user's input
+    /// - Returns: SplitResult enum
     func process(_ message: String) -> SplitResult {
 
         // Trim
@@ -43,8 +53,7 @@ class TweetSplitProcessor {
             return .error(error)
         }
 
-        // If meet requirement -> Length message is lesser than Max
-        // Return
+        // If lengh of message is lesser than the maximum count -> Just return
         if message.count < configuration.maxTweetCharacterCount {
             return .success([TweetObj(text: message)])
         }
@@ -57,6 +66,10 @@ class TweetSplitProcessor {
 // MARK: - Private
 extension TweetSplitProcessor {
 
+    /// Extract and Build Tweet
+    ///
+    /// - Parameter message: The Original Message from user's input
+    /// - Returns: Split Result
     fileprivate func buildTweet(with message: String) -> SplitResult {
 
         // Extract to each word

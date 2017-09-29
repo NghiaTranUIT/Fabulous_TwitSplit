@@ -8,12 +8,17 @@
 
 import Foundation
 
+/// Generic configruation for TweetSpltProcessor
 protocol TweetConfigurable {
 
+    /// The Maximum lenght of Tweet could be allowed
     var maxTweetCharacterCount: Int { get }
+
+    /// CharacterSet for extractor
     var characterSet: CharacterSet { get }
 }
 
+/// Desired configration
 struct TweetConfiguration: TweetConfigurable {
 
     public let maxTweetCharacterCount = 50

@@ -45,7 +45,7 @@ struct TweetValidator: TweetValidatorProtocol {
 
     func validateWordExcessMaximumCount(_ words: [String], max: Int) -> ValidateError? {
 
-        // Find if there is any one is
+        // Find if there is any one non-space word has length which excess the maximum count
         guard words.first(where: {$0.count > max}) == nil else {
             return .wordLengthExcess
         }

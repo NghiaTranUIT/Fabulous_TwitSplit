@@ -8,12 +8,23 @@
 
 import Foundation
 
+/// TweetBuildResult warp brief data
+/// Only for internal usage
+private struct TweetBuildResult {
+
+    let components: [TweetComponent]
+    let totalPage: Int
+}
+
+/// TweetBuilder
+/// Build the whole message into chunk of Tweet components
 class TweetBuilder {
 
     // MARK: - Variable
     fileprivate let configuration: TweetConfigurable
     fileprivate var indicator: TweetIndicatorProtocol
     fileprivate let words: [String] 
+    fileprivate var maxCount: Int { return self.configuration.maxTweetCharacterCount }
 
     // MARK: - Init
     init(words: [String], indicator: TweetIndicatorProtocol, configuration: TweetConfigurable) {
@@ -24,7 +35,6 @@ class TweetBuilder {
 
     // MARK: - Func
 
-
     /// Main Tweet Split func goes here
     ///
     /// - Returns: The result
@@ -32,19 +42,19 @@ class TweetBuilder {
 
         // Process
         let result = processTweetComponents()
-        var components = result.0
+        var components = result.components
 
         // Check to re-build Tweet if need
         //
         // In tough scenario, the length of total page in Indicator is too large
         // It causes a increase of total character of Tweet in order to break to MaximumCharacter Rule
-        // Ex: Please look at the README.md
+        // Ex: Please look at the README.md for further information
         //
-        let toughCase = components.filter { $0.build().text.count > configuration.maxTweetCharacterCount }
-        if toughCase.count > 0 {
-            let totalPage = result.1
+        let needRebuilt = components.filter { $0.build().text.count > maxCount }.count > 0
+        if needRebuilt {
+            let totalPage = result.totalPage
             let result = processTweetComponents(totalPage)
-            components = result.0
+            components = result.components
         }
 
         // Success
@@ -56,11 +66,21 @@ class TweetBuilder {
 // MARK: - Private
 extension TweetBuilder {
 
-    fileprivate func processTweetComponents(_ totalPage: Int = 1) -> ([TweetComponent], Int) {
+
+    /// Internal functional to split large message into pices of tweet components
+    ///
+    /// - Parameter totalPage: TotalPage. Default is 1
+    /// - Returns: The TweetBuildResult represents an array of components and total page
+    fileprivate func processTweetComponents(_ totalPage: Int = 1) -> TweetBuildResult {
 
         // Prepare
         var components: [TweetComponent] = []
         var currentPage = 1
+
+        //
+        //TODO: Side effect here
+        // This func modify the indicator variable outside
+        // Need to find the elegant solution in future
         indicator.update(1, total: totalPage)
         var currentComponent = TweetComponent(indicator: indicator)
 
@@ -81,7 +101,7 @@ extension TweetBuilder {
 
             let word = words[i]
             let isExcess = currentComponent.append(word,
-                                                   maxCount: configuration.maxTweetCharacterCount)
+                                                   maxCount: maxCount)
 
             // The tweet is excessed
             if isExcess {
@@ -108,6 +128,8 @@ extension TweetBuilder {
         // It's time to update page again
         components.forEach { $0.updateTotalPage(currentPage) }
 
-        return (components, currentPage)
+        // Return
+        return TweetBuildResult(components: components,
+                                totalPage: currentPage)
     }
 }

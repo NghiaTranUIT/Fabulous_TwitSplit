@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Wrapper Tweet Result
 enum SplitResult {
 
     typealias T = [TweetObj]

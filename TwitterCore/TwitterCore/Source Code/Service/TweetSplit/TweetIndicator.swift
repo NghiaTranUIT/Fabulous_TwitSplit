@@ -8,8 +8,8 @@
 
 import Foundation
 
-
-/// <#Description#>
+/// TweetIndicatorProtocol represent how to build the indicator of Tweet Message
+/// We could provide a custom if need
 protocol TweetIndicatorProtocol {
 
     var index: Int { get set }

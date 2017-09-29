@@ -14,6 +14,9 @@ public protocol ViewModelCoordinatorProtocol {
     var twitterViewModel: TwitterViewModel { get }
 }
 
+/// ViewModelCoordinator is responsible for coordinating all of ViewModel in TwitterCore framework
+/// In conjuntion with ControllerRouter in order to setup an appropriate ViewModel
+///
 public final class ViewModelCoordinator: ViewModelCoordinatorProtocol {
 
     // MARK: - View models
@@ -28,6 +31,9 @@ public final class ViewModelCoordinator: ViewModelCoordinatorProtocol {
         self.twitterViewModel = twitterViewModel
     }
 
+    /// Default implementation for TwitterApp
+    ///
+    /// - Returns: ViewModelCoordinator instance
     public class func defaultApp() -> ViewModelCoordinator {
 
         // Service

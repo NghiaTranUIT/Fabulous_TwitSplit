@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// TweetExtractorProtocol defind the common extraction
+/// TweetExtractorProtocol defind how extraction works
 protocol TweetExtractorProtocol {
 
     /// Character Set for extractor

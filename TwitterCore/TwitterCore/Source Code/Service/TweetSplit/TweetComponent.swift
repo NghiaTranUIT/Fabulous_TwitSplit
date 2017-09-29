@@ -58,7 +58,6 @@ class TweetComponent {
         return false
     }
 
-
     /// Build TweetObj from TweetComponent
     ///
     /// - Returns: TweetObj
