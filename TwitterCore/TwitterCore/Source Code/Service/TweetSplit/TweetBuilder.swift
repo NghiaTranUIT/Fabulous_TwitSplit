@@ -22,16 +22,19 @@ class TweetComponent {
         page.max = max
     }
 
-    func add(_ newWord: String, indicator: TweetIndicator) -> Bool {
+    func add(_ newWord: String, indicator: TweetIndicator, isEnd: Bool) -> Bool {
 
         let nextCount = wordCount + newWord.count + indicator.toString(page).count
+        let spaceCount = 1 + wordStacks.count
 
-        guard nextCount <= 50 else {
+        guard nextCount + spaceCount <= 50 else {
             return false
         }
 
         // Add to stack
         wordStacks.append(newWord)
+        wordCount += newWord.count
+
         return true
     }
 
@@ -64,28 +67,37 @@ class TweetBuilder {
     func process() -> SplitResult {
 
         var components: [TweetComponent] = []
-        var page = TweetPage(index: 0, max: 0)
+        var page = TweetPage(index: 1, max: 1)
+        var currentPage = 1
         var currentComponent = TweetComponent(page: page)
 
-        words
-            .enumerated()
-            .forEach { (i, word) in
+        var i = 0
+        while i < words.count {
 
-                let isExcess = currentComponent.add(word, indicator: indicator)
-                if isExcess {
+            let word = words[i]
+            let isEnd = i == (words.count - 1)
+            let isAdded = currentComponent.add(word, indicator: indicator, isEnd: isEnd)
+            if isAdded == false {
 
-                    // Add new component
-                    components.append(currentComponent)
+                // Add new component
+                components.append(currentComponent)
+                currentPage += 1
 
-                    // Reset
-                    page = TweetPage(index: page.index + 1, max: 0)
-                    currentComponent = TweetComponent(page: page)
-                }
+                // Reset
+                page = TweetPage(index: currentPage, max: 0)
+                currentComponent = TweetComponent(page: page)
+            }
+            else {
+                i += 1
+            }
         }
+
+        // Add last one
+        components.append(currentComponent)
 
         // Build
         let tweets = components.map { (component) -> TweetObj in
-            component.updateMaxPage(page.index)
+            component.updateMaxPage(currentPage)
             return component.build()
         }
 

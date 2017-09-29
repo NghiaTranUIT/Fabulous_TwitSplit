@@ -11,7 +11,7 @@ import Foundation
 class TweetObj {
 
     // MARK: - Variable
-    fileprivate let text: String
+    let text: String
 
     // MARK: - Init
     init(text: String) {

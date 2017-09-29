@@ -7,6 +7,16 @@
 //
 
 import XCTest
+@testable import TwitterCore
+
+extension Array where Element == TweetObj {
+
+    func mapToString() -> [String] {
+        return self.map{ (i) -> String in
+            return i.text
+        }
+    }
+}
 
 class TweetSplitProcessorTests: XCTestCase {
     
@@ -20,16 +30,62 @@ class TweetSplitProcessorTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testTweetMessageLengthLessThanMaximum() {
+
+        // Give
+        let input = "Hello, Swift"
+        let expected = ["Hello, Swift"]
+
+        // When
+        let processor = TweetSplitProcessor()
+        let result = processor.process(input)
+
+        // Then
+        switch result {
+        case .error(let error):
+            assertionFailure(error.localizedDescription)
+        case .success(let tweets):
+            print(tweets)
+            assert(expected == tweets.mapToString(), "OK")
         }
     }
-    
+
+    func testAnyMessageLengthExcessThanMaximum() {
+
+        // Give
+        let input = "Hello, Swiftabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"
+
+        // When
+        let processor = TweetSplitProcessor()
+        let result = processor.process(input)
+
+        // Then
+        switch result {
+        case .error(let error):
+            assert(error == .invalid, error.localizedDescription)
+        case .success:
+            assertionFailure("Wrong")
+        }
+    }
+
+    func testNormalCase() {
+
+        // Give
+        let input = "Twitter mostly uses Ruby on Rails for their front-end and primarily Scala and Java for back-end services. They use Apache Thrift (originally developed by Facebook) to communicate between different internal services."
+
+        let expected = ["1/6 Twitter mostly uses Ruby on Rails for their", "2/6 front-end and primarily Scala and Java for", "3/6 back-end services. They use Apache Thrift", "4/6 (originally developed by Facebook) to", "5/6 communicate between different internal", "6/6 services."]
+
+        // When
+        let processor = TweetSplitProcessor()
+        let result = processor.process(input)
+
+        // Then
+        switch result {
+        case .error(let error):
+            assertionFailure(error.localizedDescription)
+        case .success(let tweets):
+            print(tweets.mapToString())
+            assert(expected == tweets.mapToString(), "OK")
+        }
+    }
 }

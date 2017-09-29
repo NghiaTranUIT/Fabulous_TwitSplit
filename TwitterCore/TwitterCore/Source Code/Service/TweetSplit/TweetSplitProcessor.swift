@@ -34,6 +34,10 @@ class TweetSplitProcessor {
             return SplitResult.error(.invalid)
         }
 
+        if message.count < 50 {
+            return .success([TweetObj(text: message)])
+        }
+
         // Extract to each word
         let words = extractor.extract(message)
 
