@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol MessageInputBarViewDelegate: class {
+
+    func shouldSend(message: String)
+}
+
 class MessageInputBarView: UIView {
 
     // MARK: - OUTLET
     @IBOutlet fileprivate weak var textView: UITextView!
     @IBOutlet fileprivate weak var sentBtn: UIButton!
-    
+
+    // MARK: - Variable
+    public weak var delegate: MessageInputBarViewDelegate?
 
     // MARK: - View Cycle
     override func awakeFromNib() {
@@ -25,7 +32,7 @@ class MessageInputBarView: UIView {
 
 
     @objc func sendBtnTapped() {
-
+        delegate?.shouldSend(message: textView.text)
     }
 
 }

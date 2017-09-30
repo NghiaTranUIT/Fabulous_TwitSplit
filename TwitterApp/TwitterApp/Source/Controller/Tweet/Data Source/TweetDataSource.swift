@@ -13,26 +13,29 @@ import UIKit
 class TweetDataSource: NSObject {
 
     // MARK: - Variable
-    fileprivate let viewModel: TwitterViewModelProtocol
+    fileprivate var data: [MessageCellPresentable] = []
 
-    // MARK: - Init
-    init(viewModel: TwitterViewModelProtocol) {
-        self.viewModel = viewModel
+    public func append(_ newTweets: [MessageCellPresentable]) {
+        data.append(contentsOf: newTweets)
     }
 }
 
 extension TweetDataSource: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: MessageViewCell.identifier, for: indexPath) as! MessageViewCell
+        let item = data[indexPath.row]
+        cell.updatePresentor(item)
+        return cell
     }
 }
 

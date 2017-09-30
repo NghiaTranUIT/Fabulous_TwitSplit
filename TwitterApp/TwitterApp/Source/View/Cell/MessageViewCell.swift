@@ -7,20 +7,23 @@
 //
 
 import UIKit
+import TwitterCore
 
 class MessageViewCell: UITableViewCell {
+
+    // MARK: - OUTLET
+    @IBOutlet weak var messageLbl: UILabel!
+    @IBOutlet weak var userNameLbl: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func updatePresentor(_ presentor: MessageCellPresentable) {
+        self.messageLbl.text = presentor.message
+        self.userNameLbl.text = presentor.userName
     }
-    
 }
 
 // MARK: - XIBInitialization

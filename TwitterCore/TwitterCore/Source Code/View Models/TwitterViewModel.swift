@@ -56,6 +56,14 @@ public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, 
                 case .error(let error):
                     return Result.error(error)
                 case .success(let tweets):
+
+                    // Map from TweetObj to MessageCellViewModel (which adopted MessageCellPresentor)
+                    // Because we shouldn't expose the core of Twitter to the UI app
+                    // In this scenario, it's all of Model Objects (UserObj, MessageObj, TweetObj, ...)
+                    //
+                    // As a result, the UI app is no dependency on which conrete model inside the TwitterCore anymore
+                    // It's high flexibility if we change the models in the future -> don't need to fix on UI app
+                    //
                     let viewModels = tweets.map { MessageCellViewModel(tweetObj: $0) }
                     return Result.success(viewModels)
                 }
