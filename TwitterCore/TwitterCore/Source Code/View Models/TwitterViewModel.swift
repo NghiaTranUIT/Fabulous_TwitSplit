@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 public protocol TwitterViewModelProtocol {
 
@@ -16,11 +18,12 @@ public protocol TwitterViewModelProtocol {
 
 public protocol TwitterViewModelInput {
 
-    func sendMessage(text: String)
+    var sendMessagePublish: PublishSubject<String> { get }
 }
 
 public protocol TwitterViewModelOutput {
 
+    var tweetsDriver: Driver<Result<[MessageCellViewModel]>> { get }
 }
 
 public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, TwitterViewModelOutput {
@@ -33,16 +36,31 @@ public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, 
     fileprivate let twitterService: TwitterService
 
     // MARK: - Input
+    public var sendMessagePublish = PublishSubject<String>()
 
     // MARK: - Output
+    public var tweetsDriver: Driver<Result<[MessageCellViewModel]>>
 
     // MARK: - Init
     init(twitterService: TwitterService) {
         self.twitterService = twitterService
-    }
 
-    public func sendMessage(text: String) {
-        let result = twitterService.processRawMessage(rawMessage: text)
-        print(result)
+        // Binding
+        self.tweetsDriver = sendMessagePublish
+            .asObserver()
+            .flatMapLatest { (message) -> Observable<SplitResult> in
+                return twitterService.splitMessageObserver(message)
+            }
+            .map { splitResult -> Result<[MessageCellViewModel]> in
+                switch splitResult {
+                case .error(let error):
+                    return Result.error(error)
+                case .success(let tweets):
+                    let viewModels = tweets.map { MessageCellViewModel(tweetObj: $0) }
+                    return Result.success(viewModels)
+                }
+
+            }
+            .asDriver(onErrorJustReturn: Result<[MessageCellViewModel]>.success([]))
     }
 }

@@ -11,9 +11,9 @@ import Foundation
 class MessageObj {
 
     // MARK: - Variable
-    fileprivate let user: UserObj
-    fileprivate let tweet: TweetObj
-    fileprivate let createdAt = Date()
+    public let user: UserObj
+    public let tweet: TweetObj
+    public let createdAt = Date()
 
     // MARK: - Init
     init(user: UserObj, tweet: TweetObj) {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class TwitterService {
 
@@ -22,7 +23,24 @@ class TwitterService {
         self.splitProcessor = TweetSplitProcessor()
     }
 
-    func processRawMessage(rawMessage: String) -> SplitResult {
+    func splitMessage(_ rawMessage: String) -> SplitResult {
         return splitProcessor.process(rawMessage)
+    }
+
+    func splitMessageObserver(_ rawMessage: String) -> Observable<SplitResult> {
+
+        return Observable.create {[unowned self] (observer) -> Disposable in
+
+            // Process
+            let result = self.splitProcessor.process(rawMessage)
+
+            // Pass on next data
+            // We don't need to onComplete or onError
+            // Because we need to keep a signal alive until the DisposeBag is destroied
+            observer.onNext(result)
+
+            // Return
+            return Disposables.create()
+        }
     }
 }

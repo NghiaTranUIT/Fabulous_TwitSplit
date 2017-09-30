@@ -13,6 +13,7 @@ class TweetViewController: UIViewController {
 
     // MARK: - Variable
     var viewModel: TwitterViewModelProtocol!
+    fileprivate var dataSource: TweetDataSource!
 
     // MARK: - OUTLET
     fileprivate lazy var tableView: UITableView = self.lazyInitTableView()
@@ -61,8 +62,18 @@ extension TweetViewController {
     }
 
     fileprivate func lazyInitTableView() -> UITableView {
+
+        // Data Source
+        let dataSource = TweetDataSource(viewModel: viewModel)
+
+        // Table View
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.dataSource = dataSource
+        table.delegate = dataSource
+        table.estimatedRowHeight = UITableViewAutomaticDimension
+        table.register(UINib(nibName: MessageViewCell.identifier, bundle: nil),
+                       forCellReuseIdentifier: MessageViewCell.identifier)
         return table
     }
 

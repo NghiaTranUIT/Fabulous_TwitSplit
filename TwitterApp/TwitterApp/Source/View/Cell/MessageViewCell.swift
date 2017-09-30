@@ -22,3 +22,8 @@ class MessageViewCell: UITableViewCell {
     }
     
 }
+
+// MARK: - XIBInitialization
+extension MessageViewCell: XIBInitialization {
+    typealias XIBType = MessageViewCell
+}
