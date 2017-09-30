@@ -23,7 +23,7 @@ public protocol TwitterViewModelInput {
 
 public protocol TwitterViewModelOutput {
 
-    var tweetsDriver: Driver<Result<[MessageCellViewModel]>> { get }
+    var tweetsDriver: Driver<Result<[MessageCellViewModel], ValidateError>> { get }
 }
 
 public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, TwitterViewModelOutput {
@@ -39,24 +39,32 @@ public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, 
     public var sendMessagePublish = PublishSubject<String>()
 
     // MARK: - Output
-    public var tweetsDriver: Driver<Result<[MessageCellViewModel]>>
+    public var tweetsDriver: Driver<Result<[MessageCellViewModel], ValidateError>>
 
     // MARK: - Init
     init(twitterService: TwitterService) {
         self.twitterService = twitterService
 
-        // Binding
+        // Handl
         self.tweetsDriver = sendMessagePublish
             .asObserver()
             .flatMapLatest { (message) -> Observable<SplitResult> in
+
+                //
+                // Process Tweet content by using TwitterService
+                //
                 return twitterService.splitMessageObserver(message)
             }
-            .map { splitResult -> Result<[MessageCellViewModel]> in
+            .map { splitResult -> Result<[MessageCellViewModel], ValidateError> in
                 switch splitResult {
                 case .error(let error):
+
+                    // Just pass error
                     return Result.error(error)
+
                 case .success(let tweets):
 
+                    //
                     // Map from TweetObj to MessageCellViewModel (which adopted MessageCellPresentor)
                     // Because we shouldn't expose the core of Twitter to the UI app
                     // In this scenario, it's all of Model Objects (UserObj, MessageObj, TweetObj, ...)
@@ -69,6 +77,7 @@ public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, 
                 }
 
             }
-            .asDriver(onErrorJustReturn: Result<[MessageCellViewModel]>.success([]))
+            // If error, just return ValidateError.invalid
+            .asDriver(onErrorJustReturn: Result<[MessageCellViewModel], ValidateError>.error(ValidateError.invalid))
     }
 }

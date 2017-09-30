@@ -8,15 +8,16 @@
 
 import Foundation
 
-public enum Result<T> {
+public enum Result<T, E: Error> {
 
-    public typealias RawValue = T
+    public typealias ValueType = T
+    public typealias ErrorType = E
 
     // Case
-    case success(T)
-    case error(Error)
+    case success(ValueType)
+    case error(ErrorType)
 
-    public var rawValue: T {
+    public var rawValue: ValueType {
         switch self {
         case .success(let data):
             return data
@@ -45,7 +46,7 @@ public enum Result<T> {
         }
     }
 
-    public var result: T? {
+    public var result: ValueType? {
         switch self {
         case .success(let data):
             return data
@@ -54,7 +55,7 @@ public enum Result<T> {
         }
     }
 
-    public var error: Error? {
+    public var error: ErrorType? {
         switch self {
         case .error(let error):
             return error

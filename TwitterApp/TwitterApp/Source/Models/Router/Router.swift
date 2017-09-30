@@ -24,6 +24,7 @@ enum RouterType {
 }
 
 // MARK: - Router
+// All flow controller will be defined here
 class Router {
 
     // MARK: - Variable

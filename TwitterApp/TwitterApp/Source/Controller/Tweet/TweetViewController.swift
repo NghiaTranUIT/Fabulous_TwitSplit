@@ -38,20 +38,35 @@ extension TweetViewController {
 
     fileprivate func binding() {
 
-        viewModel.output.tweetsDriver
+        // Update Tweets
+        viewModel.output
+            .tweetsDriver
             .drive(onNext: {[weak self] (result) in
                 guard let `self` = self else { return }
 
                 switch result {
                 case .error(let error):
-                    print(error)
+
+                    // Error
+                    self.handleError(error)
+
                 case .success(let tweets):
+
+                    // Append & reload
                     self.dataSource.append(tweets)
                     self.tableView.reloadData()
                 }
             })
-        .addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
+    }
 
+
+    /// Handle all error here
+    /// Take a adventage from ValidateError enum, so we can use Switch easily
+    ///
+    /// - Parameter error: ValidateError's instance
+    fileprivate func handleError(_ error: ValidateError) {
+        print(error)
     }
 }
 

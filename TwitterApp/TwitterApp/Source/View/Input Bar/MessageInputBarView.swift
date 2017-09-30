@@ -27,12 +27,15 @@ class MessageInputBarView: UIView {
         super.awakeFromNib()
 
         // Setup
-        self.initCommon()
+        initCommon()
     }
 
 
     @objc func sendBtnTapped() {
         delegate?.shouldSend(message: textView.text)
+
+        // Reset
+        self.textView.text = ""
     }
 
 }

@@ -17,14 +17,6 @@ enum SplitResult {
     case success(T)
     case error(ValidateError)
 
-    public init?(rawValue: T) {
-        self = .success(rawValue)
-    }
-
-    public init(errorValue: ValidateError) {
-        self = .error(errorValue)
-    }
-
     public var rawValue: T {
         switch self {
         case .success(let data):

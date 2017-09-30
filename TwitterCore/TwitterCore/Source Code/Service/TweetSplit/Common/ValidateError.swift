@@ -14,7 +14,7 @@ import Foundation
 /// - wordLengthExcess: If there is one word in message which is excessed the limit, and can't split to individual tweet.
 /// - indicatorLengthExcesss: Indicator word is excessed the limit. For example: 1/1000000000000000... -> [more than 50 characters]
 /// - invalid: All of remain invalid case
-enum ValidateError: Error {
+public enum ValidateError: Error {
 
     case wordLengthExcess
     case indicatorLengthExcesss
