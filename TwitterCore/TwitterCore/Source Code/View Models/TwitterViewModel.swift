@@ -33,7 +33,7 @@ public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, 
     public var output: TwitterViewModelOutput { return self }
 
     // MARK: - Variable
-    fileprivate let twitterService: TwitterService
+    fileprivate let twitterService: TwitterServiceProtocol
 
     // MARK: - Input
     public var sendMessagePublish = PublishSubject<String>()
@@ -42,7 +42,7 @@ public class TwitterViewModel: TwitterViewModelProtocol, TwitterViewModelInput, 
     public var tweetsDriver: Driver<Result<[MessageCellViewModel], ValidateError>>
 
     // MARK: - Init
-    init(twitterService: TwitterService) {
+    init(twitterService: TwitterServiceProtocol) {
         self.twitterService = twitterService
 
         // Handl

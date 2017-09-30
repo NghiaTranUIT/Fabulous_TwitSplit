@@ -8,16 +8,26 @@
 
 import Foundation
 
+protocol SplitProcessor {
+
+    var configuration: TweetConfigurable { get }
+    var indicator: TweetIndicatorProtocol { get }
+    var extractor: TweetExtractorProtocol { get }
+    var validator: TweetValidatorProtocol { get }
+
+    func process(_ message: String) -> SplitResult
+}
+
 /// TweetSplitProcessor is responsible for building list of appropriate Tweet
 /// It's designed for customizable
 /// Such as Configuration, Indicator, Extractor, Validator, ...
-class TweetSplitProcessor {
+struct TweetSplitProcessor: SplitProcessor {
 
     // MARK: - Variable
-    fileprivate let configuration: TweetConfigurable
-    fileprivate let indicator: TweetIndicatorProtocol
-    fileprivate let extractor: TweetExtractorProtocol
-    fileprivate let validator: TweetValidatorProtocol
+    let configuration: TweetConfigurable
+    let indicator: TweetIndicatorProtocol
+    let extractor: TweetExtractorProtocol
+    let validator: TweetValidatorProtocol
 
     // MARK: - Init
     init(indicator: TweetIndicatorProtocol,

@@ -26,7 +26,7 @@ class TweetBuilderTest: XCTestCase {
     func testTweetBuilderWithLongMessage() {
         let input = "Linearity is the property of a mathematical relationship or function which means that it can be graphically represented as a straight line. Examples are the relationship of voltage and current across a resistor, or the mass and weight of an object."
 
-        let words = FakeTweetExtractor().extract(input)
+        let words = WhiteSpaceTweetExtractor().extract(input)
         let expected = ["1/6 Linearity is the property of a mathematical",
                         "2/6 relationship or function which means that it",
                         "3/6 can be graphically represented as a straight",
@@ -35,7 +35,7 @@ class TweetBuilderTest: XCTestCase {
                         "6/6 weight of an object."]
 
         // When
-        let indicator = FakeTweetIndicator(index: 1, total: 1)
+        let indicator = SplashTweetIndicator(index: 1, total: 1)
         let builder = TweetBuilder(words: words, indicator: indicator, configuration: tweetConfiguration)
         let result = builder.build()
         let tweets = result.rawValue.mapToString()
@@ -49,7 +49,7 @@ class TweetBuilderTest: XCTestCase {
     func testTweetWithSameIndicatorFormat() {
         let input = "Apart from counting words and characters, our online editor can help you to improve word choice and writing style, and, optionally, help you to detect grammar mistakes and plagiarism. To check word count, simply place your cursor into the text box above and start typing."
 
-        let words = FakeTweetExtractor().extract(input)
+        let words = WhiteSpaceTweetExtractor().extract(input)
         let expected = ["1/7 Apart from counting words and characters, our",
                         "2/7 online editor can help you to improve word",
                         "3/7 choice and writing style, and, optionally,",
@@ -59,7 +59,7 @@ class TweetBuilderTest: XCTestCase {
                         "7/7 typing."]
 
         // When
-        let indicator = FakeTweetIndicator(index: 1, total: 1)
+        let indicator = SplashTweetIndicator(index: 1, total: 1)
         let builder = TweetBuilder(words: words, indicator: indicator, configuration: tweetConfiguration)
         let result = builder.build()
         let tweets = result.rawValue.mapToString()
@@ -74,7 +74,7 @@ class TweetBuilderTest: XCTestCase {
     func testToughtScenarioWhenTheTotalPageOfIndicatorIncreaseTheLengthOfTweet() {
         let input = "Apart from counting words and characters, our online editor can help you to improve word choice and writing style, and, optionally, help you to detect grammar mistakes and plagiarism. To check word count, simply place your cursor into the text box above and start typing. You'll see the number of characters and words increase or decrease as you type, delete, and edit them. You can also copy and paste text from another program over into the online editor above. The Auto-Save feature will make sure you won't lose any changes while editing, even if you leave the site and come back later. Tip: Bookmark this page now."
 
-        let words = FakeTweetExtractor().extract(input)
+        let words = WhiteSpaceTweetExtractor().extract(input)
         let expected = ["1/15 Apart from counting words and characters, our",
                         "2/15 online editor can help you to improve word",
                         "3/15 choice and writing style, and, optionally,",
@@ -92,7 +92,7 @@ class TweetBuilderTest: XCTestCase {
                         "15/15 page now."]
 
         // When
-        let indicator = FakeTweetIndicator(index: 1, total: 1)
+        let indicator = SplashTweetIndicator(index: 1, total: 1)
         let builder = TweetBuilder(words: words, indicator: indicator, configuration: tweetConfiguration)
         let result = builder.build()
         let tweets = result.rawValue.mapToString()
@@ -106,7 +106,7 @@ class TweetBuilderTest: XCTestCase {
     func testIndicatorSameFormatWithCustomTweetIndicator() {
         let input = "Linearity is the property of a mathematical relationship or function which means that it can be graphically represented as a straight line. Examples are the relationship of voltage and current across a resistor, or the mass and weight of an object."
 
-        let words = FakeTweetExtractor().extract(input)
+        let words = WhiteSpaceTweetExtractor().extract(input)
         let expected = ["[1:6] Linearity is the property of a mathematical",
                         "[2:6] relationship or function which means that it",
                         "[3:6] can be graphically represented as a straight",

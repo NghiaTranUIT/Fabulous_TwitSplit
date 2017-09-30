@@ -9,7 +9,7 @@
 import Foundation
 @testable import TwitterCore
 
-struct FakeTweetIndicator: TweetIndicatorProtocol {
+struct SplashTweetIndicator: TweetIndicatorProtocol {
 
     var index: Int
     var total: Int

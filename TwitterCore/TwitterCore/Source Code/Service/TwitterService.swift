@@ -9,13 +9,20 @@
 import Foundation
 import RxSwift
 
-class TwitterService {
+protocol TwitterServiceProtocol {
+
+    var splitProcessor: SplitProcessor { get }
+    func splitMessage(_ rawMessage: String) -> SplitResult
+    func splitMessageObserver(_ rawMessage: String) -> Observable<SplitResult>
+}
+
+class TwitterService: TwitterServiceProtocol {
 
     // MARK: - Processor
-    fileprivate let splitProcessor: TweetSplitProcessor
+    let splitProcessor: SplitProcessor
 
     // MARK: - Init
-    init(splitProcessor: TweetSplitProcessor) {
+    init(splitProcessor: SplitProcessor) {
         self.splitProcessor = splitProcessor
     }
 

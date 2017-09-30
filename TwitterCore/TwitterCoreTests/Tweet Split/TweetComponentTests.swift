@@ -30,7 +30,7 @@ class TweetComponentTests: XCTestCase {
         let expected = "1/2 Hello It is the ordinary comment"
 
         // When
-        let indicator = FakeTweetIndicator(index: 1, total: 2)
+        let indicator = SplashTweetIndicator(index: 1, total: 2)
         let component = TweetComponent(indicator:indicator,
                                        wordStacks: wordStacks)
         let tweetObj = component.build()
@@ -42,8 +42,8 @@ class TweetComponentTests: XCTestCase {
     func testUpdateTotalPage() {
 
         // Given
-        let indicator = FakeTweetIndicator(index: 1, total: 2)
-        let expected = FakeTweetIndicator(index: 1, total: 5)
+        let indicator = SplashTweetIndicator(index: 1, total: 2)
+        let expected = SplashTweetIndicator(index: 1, total: 5)
 
         // When
         let component = TweetComponent(indicator:indicator,
@@ -61,7 +61,7 @@ class TweetComponentTests: XCTestCase {
         let wordStacks = ["Hello", "It", "is", "the", "ordinary", "comment"]
 
         // When
-        let indicator = FakeTweetIndicator(index: 1, total: 2)
+        let indicator = SplashTweetIndicator(index: 1, total: 2)
         let component = TweetComponent(indicator:indicator,
                                        wordStacks: wordStacks)
         let isExcess = component.append("SWIFT", maxCount: tweetConfiguration.maxTweetCharacterCount)
@@ -76,7 +76,7 @@ class TweetComponentTests: XCTestCase {
         let wordStacks = ["Hello", "It", "is", "the", "ordinary", "comment"]
 
         // When
-        let indicator = FakeTweetIndicator(index: 1, total: 2)
+        let indicator = SplashTweetIndicator(index: 1, total: 2)
         let component = TweetComponent(indicator:indicator,
                                        wordStacks: wordStacks)
         let isExcess = component.append("SWIFTSWIFTSWIFTSWIFTSWIFTSWIFTSWIFTSWIFTSWIFT",

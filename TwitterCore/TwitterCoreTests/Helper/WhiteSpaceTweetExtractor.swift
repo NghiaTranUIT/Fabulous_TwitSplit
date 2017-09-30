@@ -9,7 +9,7 @@
 import Foundation
 @testable import TwitterCore
 
-struct FakeTweetExtractor: TweetExtractorProtocol {
+struct WhiteSpaceTweetExtractor: TweetExtractorProtocol {
 
     /// Character Set for extractor
     var characterSet: CharacterSet { return .whitespaces }

@@ -18,3 +18,4 @@ struct SquareTweetIndicator: TweetIndicatorProtocol {
         return "[\(index):\(total)]"
     }
 }
+
