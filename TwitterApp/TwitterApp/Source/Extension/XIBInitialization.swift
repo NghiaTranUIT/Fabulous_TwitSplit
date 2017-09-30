@@ -20,3 +20,11 @@ extension XIBInitialization where XIBType: UIViewController {
         return XIBType(nibName: XIBType.identifier, bundle: nil)
     }
 }
+
+extension XIBInitialization where XIBType: UIView {
+
+    static func xib() -> XIBType {
+        let xib = UINib(nibName: XIBType.identifier, bundle: nil)
+        return xib.instantiate(withOwner: self, options: nil).first as! XIBType
+    }
+}
