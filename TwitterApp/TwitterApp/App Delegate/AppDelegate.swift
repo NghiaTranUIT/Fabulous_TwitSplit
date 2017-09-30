@@ -13,15 +13,20 @@ import TwitterCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Variable
-    fileprivate var coordinator: ViewModelCoordinator!
+    fileprivate var router: Router!
 
+    // Window
     var window: UIWindow?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        // Handle main window
+        let coordinator = ViewModelCoordinator.defaultApp()
+        router = Router(coordinator: coordinator)
+        window = router.initMainWindow()
+
         return true
     }
 }
 
-1
