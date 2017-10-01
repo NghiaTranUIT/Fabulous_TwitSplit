@@ -18,6 +18,8 @@
 		BA5EBBD71F7F511D00B091D2 /* MessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5EBBD61F7F511D00B091D2 /* MessageCellViewModel.swift */; };
 		BA5EBBDA1F7F51EF00B091D2 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5EBBD91F7F51EF00B091D2 /* Result.swift */; };
 		BA5EBBDD1F7F54CD00B091D2 /* TwitterAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5EBBDC1F7F54CD00B091D2 /* TwitterAuth.swift */; };
+		BA7318581F80975300A22DE6 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7318571F80975300A22DE6 /* LinkedList.swift */; };
+		BA73185A1F8097F800A22DE6 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7318591F8097F800A22DE6 /* Node.swift */; };
 		BA9369871F7D26EE005F0D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369861F7D26EE005F0D31 /* Constants.swift */; };
 		BA93698A1F7D270B005F0D31 /* TwitterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9369891F7D270B005F0D31 /* TwitterViewModel.swift */; };
 		BA93698D1F7D2718005F0D31 /* UserObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93698C1F7D2718005F0D31 /* UserObj.swift */; };
@@ -71,6 +73,8 @@
 		BA5EBBD61F7F511D00B091D2 /* MessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewModel.swift; sourceTree = "<group>"; };
 		BA5EBBD91F7F51EF00B091D2 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		BA5EBBDC1F7F54CD00B091D2 /* TwitterAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterAuth.swift; sourceTree = "<group>"; };
+		BA7318571F80975300A22DE6 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		BA7318591F8097F800A22DE6 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		BA9369861F7D26EE005F0D31 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA9369891F7D270B005F0D31 /* TwitterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterViewModel.swift; sourceTree = "<group>"; };
 		BA93698C1F7D2718005F0D31 /* UserObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObj.swift; sourceTree = "<group>"; };
@@ -180,6 +184,15 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		BA7318561F80974300A22DE6 /* Linked List */ = {
+			isa = PBXGroup;
+			children = (
+				BA7318591F8097F800A22DE6 /* Node.swift */,
+				BA7318571F80975300A22DE6 /* LinkedList.swift */,
+			);
+			path = "Linked List";
+			sourceTree = "<group>";
+		};
 		BA9369841F7D26DC005F0D31 /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +246,7 @@
 		BA9369A51F7D29E9005F0D31 /* TweetSplit */ = {
 			isa = PBXGroup;
 			children = (
+				BA7318561F80974300A22DE6 /* Linked List */,
 				BA9369AB1F7D2A3A005F0D31 /* Configuration */,
 				BA9369A61F7D29F6005F0D31 /* Common */,
 				BA9369AE1F7D2AE5005F0D31 /* TweetSplitProcessor.swift */,
@@ -546,6 +560,7 @@
 				BA9369B91F7D2E95005F0D31 /* TweetObj.swift in Sources */,
 				BA5EBBDA1F7F51EF00B091D2 /* Result.swift in Sources */,
 				BA9369BB1F7D34C1005F0D31 /* AppViewModel.swift in Sources */,
+				BA73185A1F8097F800A22DE6 /* Node.swift in Sources */,
 				BA9369B51F7D2B45005F0D31 /* TweetIndicator.swift in Sources */,
 				BA93698D1F7D2718005F0D31 /* UserObj.swift in Sources */,
 				BA9369A41F7D28A8005F0D31 /* ViewModelCoordinator.swift in Sources */,
@@ -557,6 +572,7 @@
 				BA9E21CF1F7DF17C0032909C /* TweetComponent.swift in Sources */,
 				BA9369AF1F7D2AE5005F0D31 /* TweetSplitProcessor.swift in Sources */,
 				BA9369871F7D26EE005F0D31 /* Constants.swift in Sources */,
+				BA7318581F80975300A22DE6 /* LinkedList.swift in Sources */,
 				BA93698F1F7D271F005F0D31 /* MessageObj.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
