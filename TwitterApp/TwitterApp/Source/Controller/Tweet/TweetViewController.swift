@@ -73,7 +73,7 @@ extension TweetViewController {
 extension TweetViewController {
 
     fileprivate func initCommon() {
-
+        view.layoutMargins = UIEdgeInsets.zero
     }
 
     fileprivate func setupView() {
@@ -83,13 +83,13 @@ extension TweetViewController {
 
         let guide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraintEqualToSystemSpacingBelow(guide.topAnchor, multiplier: 1.0),
-            tableView.leftAnchor.constraintEqualToSystemSpacingAfter(guide.leftAnchor, multiplier: 1.0),
-            tableView.rightAnchor.constraintEqualToSystemSpacingAfter(guide.rightAnchor, multiplier: 1.0),
-            tableView.bottomAnchor.constraintEqualToSystemSpacingBelow(messageInputView.topAnchor, multiplier: 1.0),
-            messageInputView.leftAnchor.constraintEqualToSystemSpacingAfter(guide.leftAnchor, multiplier: 1.0),
-            messageInputView.rightAnchor.constraintEqualToSystemSpacingAfter(guide.rightAnchor, multiplier: 1.0),
-            messageInputView.bottomAnchor.constraintEqualToSystemSpacingBelow(guide.bottomAnchor, multiplier: 1.0)
+            tableView.topAnchor.constraint(equalTo: guide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: messageInputView.topAnchor),
+            messageInputView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            messageInputView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            messageInputView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
             ])
 
     }
@@ -101,8 +101,11 @@ extension TweetViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = dataSource
         table.delegate = dataSource
+        table.insetsContentViewsToSafeArea = false
         table.rowHeight = UITableViewAutomaticDimension
         table.estimatedRowHeight = 44
+        table.preservesSuperviewLayoutMargins = true
+        table.tableFooterView = UIView()
         table.register(UINib(nibName: MessageViewCell.identifier, bundle: nil),
                        forCellReuseIdentifier: MessageViewCell.identifier)
         return table

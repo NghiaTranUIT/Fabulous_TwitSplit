@@ -100,6 +100,10 @@ class LinkedList<T> {
 // MARK: - Helper
 extension LinkedList {
 
+
+    /// Map LinkedList into [NodeType]
+    ///
+    /// - Returns: Array of NodeType
     func mapToArray() -> [T] {
         return map { $0.value }
     }

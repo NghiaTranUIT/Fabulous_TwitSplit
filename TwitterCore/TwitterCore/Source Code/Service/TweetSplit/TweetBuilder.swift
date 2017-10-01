@@ -107,7 +107,7 @@ extension TweetBuilder {
             let isExcess = currentComponent.append(word,
                                                    maxCount: maxCount)
 
-            // The tweet is excessed
+            // The tweet's count was excessed
             if isExcess {
 
                 // Add new component
