@@ -16,7 +16,7 @@ protocol MessageInputBarViewDelegate: class {
 class MessageInputBarView: UIView {
 
     // MARK: - OUTLET
-    @IBOutlet fileprivate weak var textView: UITextView!
+    @IBOutlet  weak var textView: KMPlaceholderTextView!
     @IBOutlet fileprivate weak var sentBtn: UIButton!
 
     // MARK: - Variable
@@ -29,7 +29,6 @@ class MessageInputBarView: UIView {
         // Setup
         initCommon()
     }
-
 
     @objc func sendBtnTapped() {
         delegate?.shouldSend(message: textView.text)
