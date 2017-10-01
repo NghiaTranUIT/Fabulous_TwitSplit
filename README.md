@@ -45,12 +45,18 @@ $ > pod install
 
 ## TwitSplit algorithm
 
+
+## Unit test
+
+wa
 ## Diagrams
 
 ### Infrastructure
+![alt text](https://raw.githubusercontent.com/NghiaTranUIT/Fabulous_TwitSplit/master/Diagrams/infrastructure.jpg)
 
 ### Twitter iOS app
+![alt text](https://raw.githubusercontent.com/NghiaTranUIT/Fabulous_TwitSplit/master/Diagrams/twitter_app.jpg)
 
 ### Twitter Core
-
+![alt text](https://raw.githubusercontent.com/NghiaTranUIT/Fabulous_TwitSplit/master/Diagrams/twitter_core.jpg)
 
