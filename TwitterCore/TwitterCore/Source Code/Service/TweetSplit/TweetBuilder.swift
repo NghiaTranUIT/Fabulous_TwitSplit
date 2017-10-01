@@ -74,31 +74,32 @@ extension TweetBuilder {
     fileprivate func processTweetComponents(_ totalPage: Int = 1) -> TweetBuildResult {
 
         // Prepare
-        var components: [TweetComponent] = []
+        let components = LinkedList<TweetComponent>([])
         var currentPage = 1
 
         //
-        //TODO: Side effect here
+        // TODO: Side effect here
         // This func modify the indicator variable outside
         // Need to find the elegant solution in future
+        //
         indicator.update(1, total: totalPage)
         var currentComponent = TweetComponent(indicator: indicator)
 
         // While loop
         // After careful consideration, I prefer linear while loop instead of Recursive function
-        // Because both have same Time Complexity
-        // It's O(n)
-
+        // Time complexity in this situtation COULD be considered
+        // as O(n) in general situations
+        //
         // The noticed drawback of recursive function is hard for reading and testing in few scenarios
         //
-
-        // Furthermore, While-loop is self-explanatory
-        // However, it seem to be slow a little bit when the number of tweets grow up
-        // We could refactor TweetComponent's wordStacks by using LinkedList rather than ordinary Array
-        // In general situation, it's reasonable.
+        // Otherwise, While-loop is self-explanatory
+        // All of computation in While-loop is O(1)
+        // Because we use LinkedList<T> for all append functions
+        //
         var i = 0
         while i < words.count {
 
+            // Access time of array is O(1)
             let word = words[i]
 
             // Time Complexcity = O(1)
@@ -110,6 +111,8 @@ extension TweetBuilder {
             if isExcess {
 
                 // Add new component
+                // Time Complexity = O(1)
+                // Because the components is LinkedList<TweetComponent>
                 components.append(currentComponent)
                 currentPage += 1
 
@@ -124,15 +127,17 @@ extension TweetBuilder {
         }
 
         // Add last one
+        // Time = O(1)
         components.append(currentComponent)
 
         // Update total tweet again
         // Because we're unable to estimate how many tweet in total before processing
         // It's time to update page again
-        components.forEach { $0.updateTotalPage(currentPage) }
+        // Time = O(n)
+        components.forEach { $0.value.updateTotalPage(currentPage) }
 
         // Return
-        return TweetBuildResult(components: components,
+        return TweetBuildResult(components: components.mapToArray(),
                                 totalPage: currentPage)
     }
 }

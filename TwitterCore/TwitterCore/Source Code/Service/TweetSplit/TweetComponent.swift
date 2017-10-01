@@ -68,7 +68,7 @@ class TweetComponent {
     func build() -> TweetObj {
 
         // Map wordStack into [String]
-        let words = wordStacks.map { $0.value }
+        let words = wordStacks.mapToArray()
         
         // Append at begin
         let allWords = [indicator.toString()] + words

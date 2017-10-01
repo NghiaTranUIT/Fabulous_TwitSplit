@@ -95,6 +95,14 @@ class LinkedList<T> {
         self.tail = node
         count += 1
     }
+}
+
+// MARK: - Helper
+extension LinkedList {
+
+    func mapToArray() -> [T] {
+        return map { $0.value }
+    }
 
     /// Simple Map function
     ///
@@ -105,28 +113,27 @@ class LinkedList<T> {
         // Initial
         var result: [E] = []
 
-        // Iterate all of note
+        // Iterate and map all of nodes
         // then transforming to desired value
         // Time complexity = O(n)
-        //
+        forEach { result.append(block($0)) }
+
+        // Return
+        return result
+    }
+
+    public func forEach(_ block: (Node<NodeType>) -> Void) {
+
+        // Iterate all of nodes
+        // Time complexity = O(n)
         var currentPointer = head
         while currentPointer != nil {
 
-            // Map
-            let newItem = block(currentPointer!)
-
-            // Append
-            result.append(newItem)
+            // Exec
+            block(currentPointer!)
 
             // Next
             currentPointer = currentPointer?.next
         }
-
-        return result
     }
-}
-
-// MARK: - Helper
-extension LinkedList {
-
 }
