@@ -1,4 +1,4 @@
-# Fabulous_TwitSplit
+# Fabulous TwitSplit
 A Fabulous TwitSplit assignment.
 
 ## Requirement 
@@ -13,7 +13,7 @@ $ > pod install
 
 ## System
 + iOS >= 9.3
-+ Xcode 9 beta 4
++ Xcode 9 GM
 
 ## What've I done?
 + Twitter Core and Twitter App.
@@ -53,7 +53,7 @@ For clearly,
 + TweetValidator: is responsible for validating the input sentence and return specific SplitError.
 + TweetExtractor: is responsible for extract whole sentence into each words.
 + TweetIndicator: is responsible for generating appropriate indicater with certain given format.
-+ TweetComponent: is responsible for holding "array" of words in order to build TweetObj in the future when fulfill the specific requirement. This "array" of TweetComponent is constructed from a generic LinkedList<T>.
++ TweetComponent: is responsible for holding "array" of words in order to build TweetObj in the future when fulfill the specific requirement. This "array" of TweetComponent is constructed from a generic **LinkedList<T>**.
 + TweetBuilder: All main algorithm will run here. It plays important role in building appropriate TweetObj.
 + TweetSplitProcessor: An abstract class in order to coordinate the flow of all functions. It takes a sentense as an input -> Validate -> Extract -> Builder -> [TweetObj] -> Output
 + TweetConfiguration: The configuration of TweetSplitProcessor. It defines MaxCharacterCount and CharacterSet.
@@ -66,7 +66,10 @@ For instance,
 func splitStringWithOrderNumber(orderNumber: Int = 1, numberMessage: Int, content: String) -> [String]? 
 ```
 
-However, I don't want to give NaiveTweetSplit too many responsibilities to handle everythings. It's cumbersome and a nightmare when we extent or customize in the future.
+However, I don't want to give NaiveTweetSplit too many responsibilities to handle everythings. 
+
+It's cumbersome and a nightmare when we extent or customize in the future.
+
 Obviously, It's also hard for testing.
 
 ### My approach
@@ -85,7 +88,11 @@ For clearly, all code + explanation are writen here
 ### Time complexity
 
 In general sitation, the time complexity is O(n).
+
 By using 1 while loop which are conjuction with LinkedList's append in order to improve.
+
+### Test-case
+All available testcase could be found [here](https://github.com/NghiaTranUIT/Fabulous_TwitSplit/tree/master/TwitterCore/TwitterCoreTests/Tweet%20Split)
 
 ## Diagrams
 
