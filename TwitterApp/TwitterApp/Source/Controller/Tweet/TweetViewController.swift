@@ -73,6 +73,10 @@ extension TweetViewController {
     /// - Parameter error: ValidateError's instance
     fileprivate func handleError(_ error: ValidateError) {
         print(error)
+
+        let alert = UIAlertController(title: "Opps: <", message: error.friendlyError, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        showDetailViewController(alert, sender: nil)
     }
 }
 
@@ -80,6 +84,9 @@ extension TweetViewController {
 
     fileprivate func initCommon() {
         view.layoutMargins = UIEdgeInsets.zero
+        title = "Fabulous Tweet"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
     }
 
     fileprivate func setupView() {

@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBI-R5-7ci">
-                    <rect key="frame" x="251" y="8" width="80" height="34"/>
+                    <rect key="frame" x="263" y="8" width="80" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="Gxx-Ns-ULx"/>
                     </constraints>
@@ -31,7 +31,7 @@
                     </state>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUg-cB-MM3" customClass="KMPlaceholderTextView" customModule="TwitterApp">
-                    <rect key="frame" x="8" y="8" width="235" height="35"/>
+                    <rect key="frame" x="8" y="8" width="243" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="220" id="2QF-d9-6S1"/>
                     </constraints>
@@ -50,9 +50,9 @@
             <constraints>
                 <constraint firstItem="KUg-cB-MM3" firstAttribute="top" secondItem="ON0-Cf-sxK" secondAttribute="top" constant="8" id="CNj-n1-mjf"/>
                 <constraint firstAttribute="bottom" secondItem="KUg-cB-MM3" secondAttribute="bottom" constant="8" id="Rxh-qN-l79"/>
-                <constraint firstItem="fBI-R5-7ci" firstAttribute="leading" secondItem="KUg-cB-MM3" secondAttribute="trailing" constant="8" id="aLT-bN-bra"/>
+                <constraint firstItem="fBI-R5-7ci" firstAttribute="leading" secondItem="KUg-cB-MM3" secondAttribute="trailing" constant="12" id="aLT-bN-bra"/>
                 <constraint firstItem="KUg-cB-MM3" firstAttribute="leading" secondItem="qRT-we-Zms" secondAttribute="leading" constant="8" id="d06-aw-gIH"/>
-                <constraint firstAttribute="trailing" secondItem="fBI-R5-7ci" secondAttribute="trailing" constant="24" id="f8P-9P-NwN"/>
+                <constraint firstAttribute="trailing" secondItem="fBI-R5-7ci" secondAttribute="trailing" constant="12" id="f8P-9P-NwN"/>
                 <constraint firstAttribute="bottom" secondItem="fBI-R5-7ci" secondAttribute="bottom" constant="9" id="gR0-fw-Teh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

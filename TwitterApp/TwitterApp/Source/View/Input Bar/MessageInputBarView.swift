@@ -31,11 +31,17 @@ class MessageInputBarView: UIView {
     }
 
     @objc func sendBtnTapped() {
+        guard textView.text.isEmpty == false else {
+            textView.resignFirstResponder()
+            return
+        }
+
+        // Notify
         delegate?.shouldSend(message: textView.text)
 
         // Reset
-        self.textView.text = ""
-        self.textView.resignFirstResponder()
+        textView.text = ""
+        textView.resignFirstResponder()
     }
 }
 

@@ -21,7 +21,7 @@ public enum ValidateError: Error {
     case invalid
 
     /// User-friendly Error message
-    var localizedDescription: String {
+    public var friendlyError: String {
         switch self {
         case .wordLengthExcess:
             return "There is one word couldn't be splited to individual Tweet"
