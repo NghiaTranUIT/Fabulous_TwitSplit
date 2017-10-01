@@ -22,14 +22,20 @@ class TweetViewController: UIViewController {
     // MARK: - OUTLET
     fileprivate lazy var tableView: UITableView = self.lazyInitTableView()
     fileprivate lazy var messageInputView: MessageInputBarView = self.lazyInitInputBar()
+    fileprivate var messageInputViewBottom: NSLayoutConstraint!
 
     // MARK: - View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initCommon()
+        handleKeyboardNotification()
         setupView()
         binding()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -82,6 +88,7 @@ extension TweetViewController {
         self.view.addSubview(messageInputView)
 
         let guide = view.safeAreaLayoutGuide
+        messageInputViewBottom = messageInputView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: guide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
@@ -89,7 +96,7 @@ extension TweetViewController {
             tableView.bottomAnchor.constraint(equalTo: messageInputView.topAnchor),
             messageInputView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             messageInputView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            messageInputView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
+            messageInputViewBottom
             ])
 
     }
@@ -116,6 +123,66 @@ extension TweetViewController {
         input.delegate = self
         input.translatesAutoresizingMaskIntoConstraints = false
         return input
+    }
+}
+
+// MARK: - Keyboard
+extension TweetViewController {
+
+    fileprivate func handleKeyboardNotification() {
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willShowKeyboardNotification(noti:)),
+                                               name: .UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.willHideKeyboardNotification(noti:)),
+                                               name: .UIKeyboardWillHide,
+                                               object: nil)
+
+    }
+
+    @objc func willHideKeyboardNotification(noti: NSNotification) {
+        self.animateTopBar(noti, willShow: false)
+    }
+
+    @objc func willShowKeyboardNotification(noti: NSNotification) {
+        // Animate
+        self.animateTopBar(noti, willShow: true)
+    }
+
+    fileprivate func animateTopBar(_ noti: NSNotification, willShow: Bool) {
+
+        // Data
+        let duration = noti.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        let curve = noti.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+
+        // Show
+        if willShow {
+
+            // Terrbible code goes here
+            // =,=
+            let keyboardBeginFrame = (noti.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            let keyboardEndFrame = (noti.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let heightOffset = keyboardBeginFrame.origin.y - keyboardEndFrame.origin.y
+
+            UIView.animate(withDuration: duration.doubleValue,
+                           delay: 0,
+                           options: UIViewAnimationOptions(rawValue: UInt(curve.intValue << 16)),
+                           animations: {
+                self.messageInputViewBottom.constant = -1 * heightOffset
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+            return
+        }
+
+        // hide
+        UIView.animate(withDuration: duration.doubleValue,
+                       delay: 0,
+                       options: UIViewAnimationOptions(rawValue: UInt(curve.intValue << 16)),
+                       animations: {
+            self.messageInputViewBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 

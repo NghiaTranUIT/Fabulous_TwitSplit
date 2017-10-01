@@ -35,8 +35,8 @@ class MessageInputBarView: UIView {
 
         // Reset
         self.textView.text = ""
+        self.textView.resignFirstResponder()
     }
-
 }
 
 // MARK: - Private
