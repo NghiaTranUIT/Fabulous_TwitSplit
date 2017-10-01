@@ -34,6 +34,7 @@ class TweetComponent {
     // MARK: - Functions
 
     /// Append new word into current Stack
+    /// Time complexity = O(1) due to the benefit of internal LinkedList
     ///
     /// - Parameter newWord: New word
     /// - Returns: True: Excess the limit.
@@ -51,9 +52,9 @@ class TweetComponent {
             return true
         }
 
-        // Add to stack
+        // Add
         // As wordStacks is built from LinkedList<T>
-        // This append function's time complexity is O(n) in general scenarios
+        // This append function's time complexity is O(1) in general scenarios
         wordStacks.append(newWord)
         wordCount += newWord.count
 
@@ -61,6 +62,7 @@ class TweetComponent {
     }
 
     /// Build TweetObj from TweetComponent
+    /// Time complexity = O(n)
     ///
     /// - Returns: TweetObj
     func build() -> TweetObj {

@@ -100,6 +100,9 @@ extension TweetBuilder {
         while i < words.count {
 
             let word = words[i]
+
+            // Time Complexcity = O(1)
+            // because the TweetComponent is using LinkedList as an internal storage.
             let isExcess = currentComponent.append(word,
                                                    maxCount: maxCount)
 

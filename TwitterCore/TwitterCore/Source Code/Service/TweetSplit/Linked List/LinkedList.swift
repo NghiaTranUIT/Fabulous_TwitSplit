@@ -125,3 +125,8 @@ class LinkedList<T> {
         return result
     }
 }
+
+// MARK: - Helper
+extension LinkedList {
+
+}
