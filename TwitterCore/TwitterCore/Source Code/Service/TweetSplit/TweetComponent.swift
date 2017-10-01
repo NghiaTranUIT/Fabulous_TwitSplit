@@ -16,7 +16,7 @@ class TweetComponent {
     // MARK: - Variable
 
     /// Contain array of words
-    fileprivate var wordStacks: [String]
+    fileprivate var wordStacks: LinkedList<String>
 
     /// Current word count
     fileprivate var wordCount: Int
@@ -27,7 +27,7 @@ class TweetComponent {
     // MARK: - Init
     init(indicator: TweetIndicatorProtocol, wordStacks: [String] = []) {
         self.indicator = indicator
-        self.wordStacks = wordStacks
+        self.wordStacks = LinkedList<String>(wordStacks) // Build LinkedList from [String]
         self.wordCount = wordStacks.map { $0.count }.reduce(0, +) // Sum all word's count
     }
 
@@ -52,6 +52,8 @@ class TweetComponent {
         }
 
         // Add to stack
+        // As wordStacks is built from LinkedList<T>
+        // This append function's time complexity is O(n) in general scenarios
         wordStacks.append(newWord)
         wordCount += newWord.count
 
@@ -63,8 +65,11 @@ class TweetComponent {
     /// - Returns: TweetObj
     func build() -> TweetObj {
 
+        // Map wordStack into [String]
+        let words = wordStacks.map { $0.value }
+        
         // Append at begin
-        let allWords = [indicator.toString()] + wordStacks
+        let allWords = [indicator.toString()] + words
 
         // Create sentences
         let content = allWords.joined(separator: " ")

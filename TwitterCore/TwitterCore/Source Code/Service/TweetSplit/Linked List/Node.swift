@@ -9,7 +9,7 @@
 import Foundation
 
 /// Node<T> represent the note of LinkedList<T>
-class Node<T: Equatable> {
+class Node<T> {
 
     // MARK: - Variable
     public let value: T

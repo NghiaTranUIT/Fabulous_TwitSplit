@@ -11,7 +11,7 @@ import Foundation
 /// Generic Linked List<T>
 /// In order to reduce the time complexity when building "array of Tweet" to O(1)
 /// Linked list is a best choice here
-class LinkedList<T: Equatable> {
+class LinkedList<T> {
 
     /// Generic type
     typealias NodeType = T
@@ -43,8 +43,14 @@ class LinkedList<T: Equatable> {
     private let _lock = NSLock()
 
     // MARK: - Init
+
+    /// Default Initialization
     init() {}
 
+    /// Alternative Initialization from any Sequence which same type of Element
+    /// It could be an array or other data structure which apdopted Sequence protocol
+    ///
+    /// - Parameter elements: Sequence elements
     init<S: Sequence>(_ elements: S) where S.Iterator.Element == T {
         for item in elements {
             append(item)
@@ -86,6 +92,36 @@ class LinkedList<T: Equatable> {
 
         // Otherwise, just assign it as an nextNode of tail node
         tail.next = node
+        self.tail = node
         count += 1
+    }
+
+    /// Simple Map function
+    ///
+    /// - Parameter block: Map Block
+    /// - Returns: Array of desired value
+    public func map<E>(_ block: (Node<NodeType>) -> E) -> [E] {
+
+        // Initial
+        var result: [E] = []
+
+        // Iterate all of note
+        // then transforming to desired value
+        // Time complexity = O(n)
+        //
+        var currentPointer = head
+        while currentPointer != nil {
+
+            // Map
+            let newItem = block(currentPointer!)
+
+            // Append
+            result.append(newItem)
+
+            // Next
+            currentPointer = currentPointer?.next
+        }
+
+        return result
     }
 }
